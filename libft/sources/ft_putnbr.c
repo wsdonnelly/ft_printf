@@ -6,68 +6,23 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 12:13:42 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/25 16:03:30 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/26 22:05:29 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*str_rev(char *str)
-{
-	int		i;
-	int		len;
-	char	temp;
-
-	i = 0;
-	len = ft_strlen(str);
-	while (i < len / 2)
-	{
-		temp = str[i];
-		str[i] = str[len - 1 - i];
-		str[len - 1 - i] = temp;
-		i++;
-	}
-	return (str);
-}
-
-static void	fill_num(char *num, int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	if (n == 0)
-	{
-		num[0] = '0';
-		return ;
-	}
-	while (n)
-	{
-		num[i] = (n % 10) + 48;
-		n /= 10;
-		i++;
-	}
-	num[i] = '\0';
-}
-
 void	ft_putnbr(int n)
 {
-	char	*done;
-	int		sign;
-	char	num[12];
+	long	x;
 
-	ft_bzero(num, 12);
-	sign = 1;
-	if (n < 0)
-		sign = -1;
-	if (n == -2147483648)
+	x = (long)n;
+	if (x < 0)
 	{
-		ft_putstr("-2147483648");
-		return ;
+		ft_putchar('-');
+		x *= -1;
 	}
-	n *= sign;
-	fill_num(num, n);
-	if (sign == -1)
-		num[ft_num_digits(n)] = '-';
-	done = str_rev(num);
-	ft_putstr(done);
+	if (x / 10)
+		ft_putnbr (x / 10);
+	ft_putchar (x % 10 + '0');
 }
