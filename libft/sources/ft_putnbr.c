@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 12:13:42 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/26 22:05:29 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/26 22:26:15 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putnbr(int n)
 	if (x < 0)
 	{
 		ft_putchar('-');
-		x *= -1;
+		x = -x;
 	}
 	if (x / 10)
 		ft_putnbr (x / 10);
