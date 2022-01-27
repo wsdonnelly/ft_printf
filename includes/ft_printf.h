@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 11:40:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/27 13:34:01 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:46:35 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ typedef struct s_pformat
 
 int	ft_printf(const char *format, ...);
 void get_conversion(char c, t_pformat *cur, va_list ap);
-void add_char_to_field(char *str, unsigned char *c, t_pformat *cur);
+//util
+int write_char(char c, size_t len);
+int putstr_len (char const *s, size_t len);
+//printers
 void print_char(t_pformat *cur, va_list ap);
+void print_string(t_pformat *cur, va_list ap);
 
 #endif
 

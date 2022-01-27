@@ -13,21 +13,21 @@ INCLUDES	= -I includes -I libft/includes
 all: $(NAME)
 
 $(NAME): $(OBJS)
-
-	$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(INCLUDES) $(OBJS) -o $(NAME) $(LIBFLAGS)
+	@echo "Compiling ..."
+	@$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(INCLUDES) $(OBJS) -o $(NAME) $(LIBFLAGS)
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c
 #	make -sC libft
-	mkdir -p $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $< 
+	@mkdir -p $(OBJS_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $< 
 
 clean:
-	rm -rf $(OBJS_DIR)
-#	rm -f libft/objects/*.o
+	@rm -rf $(OBJS_DIR)
+#	@rm -f libft/objects/*.o
 
 fclean: clean
-	rm -f $(NAME)
-#	rm -f libft/libft.a
+	@rm -f $(NAME)
+#	@rm -f libft/libft.a
 
 re: fclean all
 

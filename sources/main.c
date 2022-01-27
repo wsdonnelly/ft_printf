@@ -8,7 +8,7 @@ int main ()
 	int ret;
 	//int ret2;
 
-	ret = ft_printf("one%#ctwo\n", '*');
+	ret = ft_printf("123%-.s456\n", "HELLO");
 	printf("ret: %d\n", ret);
 	//printf("REALi started and%% i did it!\n", x);
 	//ft_printf("ret: %# 0.20d\n", ret);

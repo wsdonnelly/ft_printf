@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 10:22:37 by wdonnell          #+#    #+#             */
-/*   Updated: 2021/11/24 15:04:12 by wdonnell         ###   ########.fr       */
+/*   Created: 2022/01/27 15:32:09 by wdonnell          #+#    #+#             */
+/*   Updated: 2022/01/27 15:43:37 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+char *ft_strset(size_t size, char c)
 {
-	size_t	i;
-	size_t	len;
+	char	*str;
 
-	len = ft_strlen(s1);
-	i = 0;
-	while (s2[i] != '\0' && i < n)
+	str = (char *)malloc(sizeof(char) * size + 1);
+	if (!str)
+		return (NULL);
+	while (size)
 	{
-		s1[len + i] = s2[i];
-		i++;
+		str[size - 1] = c;
+		size--;
 	}
-	s1[len + i] = '\0';
-	return (s1);
+	return (str);
 }

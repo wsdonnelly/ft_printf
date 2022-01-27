@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:17:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/27 13:33:50 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:01:17 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void get_conversion(char c, t_pformat *cur, va_list ap)
 
 	if (c == 'c')
 		print_char(cur, ap);
-	/*
 	else if (c == 's')
-		print_string(cur, ap, temp);
+		print_string(cur, ap);
+	/*
 	else if (c == 'p')
-		print_pointer(cur, ap, temp);
+		print_pointer(cur, ap);
 	else if (c == 'd' || c == 'i')
-		print_int(cur, ap, temp);
+		print_int(cur, ap);
 	else if (c == 'o')
-		print_octal(cur, ap, temp);
+		print_octal(cur, ap);
 	else if (c == 'u')
-		print_unsigned(cur, ap, temp);
+		print_unsigned(cur, ap);
 	else if (c == 'x')
-		print_lhex(cur, ap, temp);
+		print_lhex(cur, ap);
 	else if (c == 'X')
-		print_uhex(cur, ap, temp);
+		print_uhex(cur, ap);
 	else if (c == 'f')
-		print_double(cur, ap, temp);
+		print_double(cur, ap);
 	*/
 }
