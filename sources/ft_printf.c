@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:51:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/25 17:31:16 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:41:53 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ static void init_pformat(t_pformat *cur)
 	cur->dot = 0;
 	cur->precision = 0;
 	ft_bzero(&cur->length_modifier, sizeof(char) * 3);
-	cur->conversion = '\0';
 	cur->printed_length = 0;
 }
 
-//static void find_format(va_list ap, const char *format, t_pformat *cur)
-static int find_format(const char *format, t_pformat *cur)
+static int find_format(va_list ap, const char *format, t_pformat *cur)
+//static int find_format(const char *format, t_pformat *cur)
 {
 	int j;
 	int k;
@@ -90,20 +89,21 @@ static int find_format(const char *format, t_pformat *cur)
 	if (ft_strchr("cspdiouxXf", (int)format[j]))
 	{
 		//set conversion
-		cur->conversion = format[j];
-		if (format[j] == '%')
-			return (j);
+		//cur->conversion = format[j];//skip this
+		get_conversion(format[j], cur, ap);
+
 		//increment
-		j++;
+		//j++;
 		//go to next section of program
 		//typedef next_part(t_pformat *cur, va_list ap);
 		//dispatch[](t_pformat *cur, va_list ap);
-		return (j);
+		return (++j);
 	}
 	//error
-	exit(-1);
+	return (j);
 
 }
+/*
 static void struct_tester(t_pformat *cur)
 {
 	printf("hash: %d\n",cur->hash);
@@ -115,10 +115,10 @@ static void struct_tester(t_pformat *cur)
 	printf("dot: %d\n",cur->dot);
 	printf("precision(int): %d\n",cur->precision);
 	printf("length_modifier(str): %s\n",cur->length_modifier);
-	printf("conversion(char): %c\n",cur->conversion);
+	
 	printf("printed_length(int): %d\n",cur->printed_length);
 }
-
+*/
 int ft_printf(const char *format, ...)
 {
 	va_list ap;
@@ -135,8 +135,8 @@ int ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			//start printing format
-			//i += find_format(ap, &format[i + 1], &cur);
-			i += find_format(&format[i + 1], &cur) + 1;
+			i += find_format(ap, &format[i + 1], &cur) + 1;
+			//i += find_format(&format[i + 1], &cur) + 1;
 			//add to total printed
 			total += cur.printed_length;
 			
@@ -148,6 +148,6 @@ int ft_printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
-	struct_tester(&cur);
+	//struct_tester(&cur);
 	return (total);
 }
