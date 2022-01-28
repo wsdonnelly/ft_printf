@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:25:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/28 14:18:39 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:24:17 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,4 @@ void print_pointer(t_pformat *cur, va_list ap)
 	}
 	cur->printed_length += write(1, "0x", 2);
 	cur->printed_length += ft_putnbr_base(p, 16, 1);
-}
-
-void print_octal(t_pformat *cur, va_list ap)
-{
-
-}
-
-void print_hex(t_pformat *cur, va_list ap)
-{
-
 }

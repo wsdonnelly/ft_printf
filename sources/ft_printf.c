@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:51:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/27 13:41:53 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:14:22 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 	{
 		//set conversion
 		//cur->conversion = format[j];//skip this
+
 		get_conversion(format[j], cur, ap);
 
 		//increment

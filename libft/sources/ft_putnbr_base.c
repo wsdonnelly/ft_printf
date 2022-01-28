@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:19:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/28 14:16:15 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:37:15 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,19 @@ int	ft_putnbr_base(unsigned long long n, int base, int flag)
 		return (++sum);
 	}
 	if (n / base)
-	{
 		ft_putnbr_base(n / base, base, flag);
-		if (n % base > 9)
-		{
-			if (flag)
-				ft_putchar((n % base) - 10 + 'A');
-			else
-				ft_putchar((n % base) - 10 + 'a');
-			return (++sum);
-		}
+	if (n % base > 9)
+	{
+		if (flag)
+			ft_putchar((n % base) - 10 + 'A');
 		else
-		{
-			ft_putchar(n % base + '0');
-			return (++sum);
-		}
+			ft_putchar((n % base) - 10 + 'a');
+		return (++sum);
+	}
+	else
+	{
+		ft_putchar(n % base + '0');
+		return (++sum);
 	}
 	return (0);
 }
