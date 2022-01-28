@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 11:40:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/27 16:46:35 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/28 13:12:31 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ void get_conversion(char c, t_pformat *cur, va_list ap);
 //util
 int write_char(char c, size_t len);
 int putstr_len (char const *s, size_t len);
+int num_digits_base(unsigned long long n, int base);
 //printers
 void print_char(t_pformat *cur, va_list ap);
 void print_string(t_pformat *cur, va_list ap);
+void print_pointer(t_pformat *cur, va_list ap);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:25:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/27 17:06:35 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:18:39 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,43 @@ void print_string(t_pformat *cur, va_list ap)
 		cur->printed_length += putstr_len(str, ft_strlen(str));
 		
 	}
+}
+
+void print_pointer(t_pformat *cur, va_list ap)
+{
+	unsigned long long p;
+	unsigned int len;
+
+	p = (unsigned long long)va_arg(ap, void *);
+	len = num_digits_base(p, 16);
+	//possible fix to mimic gcc printf behavior regarding %.p<NULL>
+	if (cur->hash || cur->zero || cur->space || cur->plus || cur->precision || cur->dot)
+		//undefined
+		return ;
+	else if (cur->minus && cur->field_width > len)
+	{
+		cur->printed_length += write(1, "0x", 2);
+		cur->printed_length += ft_putnbr_base(p, 16, 1);
+		cur->printed_length += write_char(' ', cur->field_width - len - 2);
+		return ;
+	}
+	else if (cur->field_width > len)
+	{
+		cur->printed_length += write_char(' ', cur->field_width - len - 2);
+		cur->printed_length += write(1, "0x", 2);
+		cur->printed_length += ft_putnbr_base(p, 16, 1);
+		return ;
+	}
+	cur->printed_length += write(1, "0x", 2);
+	cur->printed_length += ft_putnbr_base(p, 16, 1);
+}
+
+void print_octal(t_pformat *cur, va_list ap)
+{
+
+}
+
+void print_hex(t_pformat *cur, va_list ap)
+{
+
 }
