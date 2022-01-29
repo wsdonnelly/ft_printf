@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printers.c                                         :+:      :+:    :+:   */
+/*   print_csp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:25:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/28 14:24:17 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:53:46 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void print_pointer(t_pformat *cur, va_list ap)
 	p = (unsigned long long)va_arg(ap, void *);
 	len = num_digits_base(p, 16);
 	//possible fix to mimic gcc printf behavior regarding %.p<NULL>
-	if (cur->hash || cur->zero || cur->space || cur->plus || cur->precision || cur->dot)
+	if (cur->hash || cur->zero || cur->space || cur->plus || cur->dot)
 		//undefined
 		return ;
 	else if (cur->minus && cur->field_width > len)

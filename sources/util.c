@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/28 13:47:44 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/29 14:16:58 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int putstr_len(char const *s, size_t len)
 	return (n);
 }
 
-int num_digits_base(unsigned long long n, int base)
+unsigned int num_digits_base(unsigned long long n, int base)
 {
-	static int	sum;
+	static unsigned int	sum;
 
 	if (n > 0)
 	{
