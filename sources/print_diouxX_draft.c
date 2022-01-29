@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_diouxX.c                                     :+:      :+:    :+:   */
+/*   print_diouxX_draft.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 14:25:11 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/29 15:36:33 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/29 18:47:47 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,21 +104,27 @@ void print_octal(t_pformat *cur, va_list ap)
 	cur->printed_length += ft_putnbr_base(n, 8, 0);
 }
 
-void print_precision(t_pformat *cur, unsigned int len)
-{
-	if (cur->precision > len)
-		cur->printed_length += write_char('0', cur->precision - len);
-	if (cur->hash)
-		cur->printed_length += write(1, "0", 1);
-	cur->printed_length += ft_putnbr_base(n, 8, 0);
-	
-}
 /*
-if (cur->field_width > precision)
-	if (cur->minus)
-		write zero padded as abouve
-		write spaces to end of field width
-	else
-		write spaces
-		write zero padded as above
+
+if (cur->dot && !cur->zero)
+{
+	if (cur->field_width > precision)
+		if (cur->minus)
+			print_precision(cur, len, c)
+			cur->printed_length += write_char(' ', cur->field_width - len);
+		else
+			cur->printed_length += write_char(' ', cur->field_width - len);
+			print_precision(cur, len, c)
+}
+else if (!cur->dot && cur->zero)
+{
+	if (cur->field_width > precision)
+		if (cur->minus)
+			print_precision(cur, len, c)
+			cur->printed_length += write_char('0', cur->field_width - len);
+		else
+			cur->printed_length += write_char('0', cur->field_width - len);
+			print_precision(cur, len, c)
+}
+
 */
