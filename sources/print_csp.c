@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:25:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/28 15:53:46 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/30 15:39:56 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ void print_char(t_pformat *cur, va_list ap)
 void print_string(t_pformat *cur, va_list ap)
 {
 	char *str;
+	size_t len;
 
 	str = va_arg(ap, char *);
 	if (cur->hash || cur->zero || cur->space || cur->plus || !str)
 		//undefined
 		return ;
-	if (cur->precision > ft_strlen(str))
-		cur->precision = ft_strlen(str);
+	len = ft_strlen(str);
+	if (cur->precision > len)
+		cur->precision = len;
 	if (cur->minus)
 	{
 		if (cur->dot)
 			cur->printed_length += putstr_len(str, cur->precision);
 		else
-			cur->printed_length += putstr_len(str, ft_strlen(str));
-		if (cur->field_width > ft_strlen(str))
+			cur->printed_length += putstr_len(str, len);
+		if (cur->field_width > len)
 			cur->printed_length += write_char(' ', cur->field_width - cur->printed_length);
 		return ;
 	}
@@ -66,8 +68,9 @@ void print_string(t_pformat *cur, va_list ap)
 			cur->printed_length += putstr_len(str, cur->precision);
 			return ;
 		}
-		cur->printed_length += write_char(' ', cur->field_width - ft_strlen(str));
-		cur->printed_length += putstr_len(str, ft_strlen(str));
+		if (cur->field_width > len)
+			cur->printed_length += write_char(' ', cur->field_width - len);
+		cur->printed_length += putstr_len(str, len);
 		
 	}
 }
