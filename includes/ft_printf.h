@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 11:40:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/29 14:17:17 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/30 12:54:35 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ unsigned int num_digits_base(unsigned long long n, int base);
 void print_char(t_pformat *cur, va_list ap);
 void print_string(t_pformat *cur, va_list ap);
 void print_pointer(t_pformat *cur, va_list ap);
-//void print_ouxX(t_pformat *cur, va_list ap, char c);
-void print_octal(t_pformat *cur, va_list ap);
+void print_ouxX(t_pformat *cur, va_list ap, char c);
+
 
 #endif
 

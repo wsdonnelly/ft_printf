@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <limits.h>
 #include <stdio.h>
 
 int main ()
@@ -7,8 +8,8 @@ int main ()
 	//int y = 51;
 	int ret;
 	//int ret2;
-
-	ret = ft_printf("%030.2o\n", 12345678);
+	unsigned long long  n = ULLONG_MAX;
+	ret = ft_printf("%#llX\n", n);
 	printf("ret: %d\n", ret);
 	//printf("REALi started and%% i did it!\n", x);
 	//ft_printf("ret: %# 0.20d\n", ret);

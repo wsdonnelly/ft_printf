@@ -3,7 +3,7 @@ NAME 		= ft_printf
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 EXTRA_FLAGS = -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
-SRCS		= main.c ft_printf.c util.c get_conversion.c print_csp.c print_diouxX.c
+SRCS		= main.c ft_printf.c util.c get_conversion.c print_csp.c print_ouxX.c
 SRCS_DIR	= ./sources/
 OBJS		= $(addprefix	$(OBJS_DIR), $(SRCS:.c=.o))
 OBJS_DIR	= ./objects/
