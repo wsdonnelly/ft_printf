@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/30 15:44:48 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/30 16:13:13 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,23 @@ unsigned int num_digits_base(unsigned long long n, int base)
 			return (++sum);
 	}
 	return (0);
+}
+
+/*
+** writes to stdout up to signed long long
+** does not print sign
+** returns number of digits
+*/
+
+int	ft_putnbrLL(long long n)
+{
+	static int	sum;
+
+	if (n < 0)
+		n = -n;
+	if (n / 10)
+		ft_putnbrLL(n / 10);
+	ft_putchar (n % 10 + '0');
+	return (++sum);
+
 }

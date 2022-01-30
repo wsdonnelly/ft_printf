@@ -6,7 +6,7 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/02 10:23:27 by wdonnell          #+#    #+#              #
-#    Updated: 2022/01/28 11:40:35 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/01/30 16:12:13 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlen.c ft_strmap.c \
 ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c \
 ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c \
 ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c get_next_line.c \
-ft_num_digits.c ft_strset.c ft_putnbr_base.c
+ft_num_digits.c ft_strset.c ft_putnbr_base.c 
 SRCS_DIR = ./sources/
 OBJS = $(addprefix	$(OBJS_DIR), $(SRCS:.c=.o))
 OBJS_DIR = ./objects/
