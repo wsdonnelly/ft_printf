@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:51:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/28 15:14:22 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:51:50 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,9 @@ int ft_printf(const char *format, ...)
 	int total;
 	t_pformat cur;
 
-	
+	if (!format)
+		//error
+		return (0);
 	va_start(ap, format);
 	total = 0;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/30 16:13:13 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:13:10 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ unsigned int num_digits_base(unsigned long long n, int base)
 			return (++sum);
 	}
 	return (0);
+}
+
+int	ft_num_digitsLL(long long n)
+{
+	int	num_digits;
+
+	num_digits = 0;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		num_digits++;
+		n /= 10;
+	}
+	return (num_digits);
 }
 
 /*
