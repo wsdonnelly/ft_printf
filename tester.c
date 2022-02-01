@@ -1,28 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "libft/includes/libft.h"
+//#include "libft/includes/libft.h"
 #include <limits.h>
 
 
+unsigned int num_digits_basetest(unsigned long long n, unsigned long long base, unsigned int sum)
+{
+	if (n == 0)
+		return (1);
+	if (n / base)
+	sum = num_digits_basetest(n / base, base, sum);
+	return (++sum);
+}
 
 int main ()
 {
 
-	int ret;
-	//int ret2;
-	//unsigned long long  n = 12345;
-	//unsigned int x = 12345678;
-	//char c = '$';
-	//unsigned long long  n = ULLONG_MAX;
-	ret =printf("%-10.30d\n", -1234);
-	printf("ret: %d\n", ret);
+	printf("%u\n", 1234567890);
+	printf("numdig: %u\n", num_digits_basetest(1234567890, 10, 0));
 
-	//ft_putnbr_base(ULLONG_MAX, 16, 0);
-	
 
-	
-	//printf("\n");
-	//printf("ret2: %d\n", ret2);
 	return (0);
 }
 

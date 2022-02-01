@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:51:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 15:19:24 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:12:08 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 	init_pformat(cur);
 	//loop through string and fill struct w/ data
 	j = 0;
-	if (format[j] == '%')
-	{
-		cur->printed_length = (unsigned int)write(1, "%", 1);
-		return (++j);
-	}
+	
 	while (ft_strchr("#0-+ ", (int)format[j]))
 	{
 		//set flags
@@ -68,7 +64,7 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 		//set dot
 		cur->dot = 1;
 		j++;
-		if (ft_strchr("123456789", (int)format[j]))
+		if (ft_strchr("0123456789", (int)format[j]))
 		{
 			//set precision
 			cur->precision = (unsigned int)ft_atoi(&format[j]);
@@ -86,21 +82,18 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 		k++;
 		j++;
 	}
-	if (ft_strchr("cspdiouxXf", (int)format[j]))
+	if (ft_strchr("cspdiouxXf%", (int)format[j]))
 	{
 		//set conversion
 		//cur->conversion = format[j];//skip this
 
 		get_conversion(format[j], cur, ap);
 
-		//increment
-		//j++;
-		//go to next section of program
 		//typedef next_part(t_pformat *cur, va_list ap);
 		//dispatch[](t_pformat *cur, va_list ap);
 		return (++j);
 	}
-	//error
+
 	return (j);
 
 }

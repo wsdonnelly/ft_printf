@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:17:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 13:52:13 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/01 13:51:51 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void get_conversion(char c, t_pformat *cur, va_list ap)
 {
 
+	if (c == '%')
+		print_percent(cur);
 	if (c == 'c')
 		print_char(cur, ap);
 	else if (c == 's')

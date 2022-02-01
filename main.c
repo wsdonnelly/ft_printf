@@ -1,7 +1,8 @@
-#include "libprintf/includes/ft_printf.h"
+#include "libftprintf/includes/ft_printf.h"
 
 #include <limits.h>
 #include <stdio.h>
+
 
 int main ()
 {
@@ -9,11 +10,16 @@ int main ()
 	//int y = 51;
 	//char *str = "HELLO WOLD";
 	int ret;
-	//int ret2;
+	int ret2;
 	//unsigned long long  n = 12345;
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
-	ret = ft_printf("%0-10.30d\n", -1234);
+	ret = ft_printf("@moulitest: %d %d", 1234, -9876);
+	printf("\n");
 	printf("ret: %d\n", ret);
+	ret2 = printf("@moulitest: %d %d", 1234, -9876);
+	printf("\n");
+	printf("ret: %d\n", ret2);
+
 	//printf("REALi started and%% i did it!\n", x);
 	//ft_printf("ret: %# 0.20d\n", ret);
 
@@ -24,3 +30,4 @@ int main ()
 }
 
 //%[$][flags][width][.precision][length modifier]conversion
+//make  -C libftprintf && gcc main.c -L libftprintf -lftprintf

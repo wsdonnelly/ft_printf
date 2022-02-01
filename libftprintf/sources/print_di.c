@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 16:16:57 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 14:28:17 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/01 16:47:45 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void print_precision_di(t_pformat *cur, unsigned int len, long long n)
 {
 	if (cur->precision > len)
 		cur->printed_length += write_char('0', cur->precision - len);
-	cur->printed_length += ft_putnbrLL(n);
+	ft_putnbrLL(n);
 	
 	
 }
@@ -48,10 +48,9 @@ static void	print_field_di(t_pformat *cur, unsigned int len, long long n)
 		positive = 0;
 	if (cur->precision > len)
 		total_len = cur->precision;
-	else
-		total_len = cur->precision + len;
-	printf("precision: %d\n", cur->precision);
-	printf("total len: %d\n", total_len);
+	else 
+		total_len = len;
+
 	if (cur->minus) //left
 	{
 		if (cur->field_width > total_len)
@@ -67,7 +66,6 @@ static void	print_field_di(t_pformat *cur, unsigned int len, long long n)
 	}
 	else //right
 	{
-		printf("cfw: %d\n", cur->field_width );
 		if (cur->field_width > total_len)
 		{
 			if (cur->zero && !cur->dot)
@@ -83,9 +81,6 @@ static void	print_field_di(t_pformat *cur, unsigned int len, long long n)
 			print_prefix_di(cur,  positive);
 			print_precision_di(cur, len,  n);
 			return ;
-
-
-			
 		}
 		print_prefix_di(cur,  positive);
 		print_precision_di(cur, len,  n);
@@ -117,5 +112,6 @@ void print_di(t_pformat *cur, va_list ap)
 	if (cur->field_width > cur->precision)
 		if (cur->space || cur->plus || n < 0)
 			len++;
+	cur->printed_length += len;
 	print_field_di(cur, len, n);
 }

@@ -6,15 +6,18 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:36:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 13:30:31 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/01 16:43:36 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-static void print_prefix_ouxX(t_pformat *cur, char c)
+static void print_prefix_ouxX(t_pformat *cur, char c, char flag)
 {
-	if (cur->hash)
+	
+
+	if ((cur->hash && flag)||(c == 'o' && cur->hash && !flag))
 	{
 		cur->printed_length += write(1, "0", 1);
 		if (c == 'x' || c == 'X')
@@ -27,31 +30,48 @@ static void print_precision_ouxX(t_pformat *cur, unsigned int len, char c, unsig
 	if (cur->precision > len)
 		cur->printed_length += write_char('0', cur->precision - len);
 	if (c == 'o')
-		cur->printed_length += ft_putnbr_base(n, 8, 0);
+		ft_putnbr_base(n, 8, 0);
 	else if (c == 'u')
-		cur->printed_length += ft_putnbr_base(n, 10, 0);
+		 ft_putnbr_base(n, 10, 0);
 	else if (c == 'x')
-		cur->printed_length += ft_putnbr_base(n, 16, 0);
+		ft_putnbr_base(n, 16, 0);
 	else if (c == 'X')
-		cur->printed_length += ft_putnbr_base(n, 16, 1);
+		ft_putnbr_base(n, 16, 1);
 	
 }
 
 static void	print_field_ouxX(t_pformat *cur, unsigned int len, char c, unsigned long long n)
 {
 	unsigned int total_len;
+	char flag;
 
-	total_len = len + cur->precision;
+	flag = 1;
+	if (n == 0)
+		flag = 0;
+	if (cur->precision > len)
+		total_len = cur->precision;
+	else 
+		total_len = len;
+	//printf("\ntotal len: %d\n", total_len);
+	
+	if (flag == 0 && cur->dot && !cur->precision)
+	{
+		if (cur->field_width)
+			cur->printed_length += write_char(' ', cur->field_width);
+		return ;
+	}
 	if (cur->minus) //left
 	{
 		if (cur->field_width > total_len)
 		{
-			print_prefix_ouxX(cur, c);
+		
+			print_prefix_ouxX(cur, c, flag);
 			print_precision_ouxX (cur, len, c, n);
 			cur->printed_length += write_char(' ', cur->field_width - total_len);
 			return ;
 		}
-		print_prefix_ouxX(cur, c);
+		
+		print_prefix_ouxX(cur, c, flag);;
 		print_precision_ouxX (cur, len, c, n);
 
 	}
@@ -61,21 +81,19 @@ static void	print_field_ouxX(t_pformat *cur, unsigned int len, char c, unsigned 
 		{
 			if (cur->zero && !cur->dot)
 			{
-				print_prefix_ouxX(cur, c);
+				print_prefix_ouxX(cur, c, flag);
 				cur->printed_length += write_char('0', cur->field_width - total_len);
 				print_precision_ouxX (cur, len, c, n);
 				return ;
 			}
-			else if (cur->dot)
-			{
-				cur->printed_length += write_char(' ', cur->field_width - total_len);
-				print_prefix_ouxX(cur, c);
-				print_precision_ouxX (cur, len, c, n);
-				return ;
-			}
+			//else if (cur->dot)
 			
+			cur->printed_length += write_char(' ', cur->field_width - total_len);
+			print_prefix_ouxX(cur, c, flag);
+			print_precision_ouxX (cur, len, c, n);
+			return ;
 		}
-		print_prefix_ouxX(cur, c);
+		print_prefix_ouxX(cur, c, flag);
 		print_precision_ouxX (cur, len, c, n);
 	}
 
@@ -100,17 +118,19 @@ void print_ouxX(t_pformat *cur, va_list ap, char c)
 		n = (unsigned long long)va_arg(ap, unsigned int);
 	//get len
 	if (c == 'o')
-		len = num_digits_base(n, 8);
+		len = num_digits_base(n, 8, 0);
 	else if (c == 'u')
-		len = num_digits_base(n, 10);
+		len = num_digits_base(n, 10, 0);
 	else 
-		len = num_digits_base(n, 16);
+		len = num_digits_base(n, 16, 0);
+	//printf("\nlen iz: %d\n", len);
 	if (cur->field_width > cur->precision)
 	{
 		if ((c == 'o' || c == 'u') && cur->hash)
 			len++;
-		else if ((c == 'x' || c == 'X') && cur->hash)
+		else if ((c == 'x' || c == 'X') && cur->hash && n != 0)
 			len += 2;
 	}
+	cur->printed_length += len;
 	print_field_ouxX(cur, len, c, n);
 }

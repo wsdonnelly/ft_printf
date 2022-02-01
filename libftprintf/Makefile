@@ -6,11 +6,11 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 12:30:42 by wdonnell          #+#    #+#              #
-#    Updated: 2022/02/01 12:32:18 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/02/01 12:51:32 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= libprintf.a
+NAME 		= libftprintf.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 EXTRA_FLAGS = -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
@@ -26,7 +26,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "Compiling ..."
 	make -sC libft
-	@cp libft/libft.a ./libprintf.a
+	@cp libft/libft.a ./libftprintf.a
 	@cp libft/includes/libft.h ./includes/
 	@ar rc $(NAME) $(OBJS) 
 	@@echo "Compiled"

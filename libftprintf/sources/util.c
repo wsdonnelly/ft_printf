@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 16:18:41 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/01 16:34:57 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,13 @@ size_t putstr_len(char const *s, size_t len)
 	return (n);
 }
 
-unsigned int num_digits_base(unsigned long long n, unsigned long long base)
+unsigned int num_digits_base(unsigned long long n, unsigned long long base, unsigned int sum)
 {
-	static unsigned int	sum;
-
-	if (n > 0)
-	{
-		num_digits_base(n / base, base);
-			return (++sum);
-	}
-	else
-		return (++sum);
-	return (0);
+	if (n == 0)
+		return (1);
+	if (n / base)
+	sum = num_digits_base(n / base, base, sum);
+	return (++sum);
 }
 
 unsigned int	ft_num_digitsLL(long long n)
@@ -78,18 +73,16 @@ unsigned int	ft_num_digitsLL(long long n)
 /*
 ** writes to stdout up to signed long long
 ** does not print sign
-** returns number of digits
 */
 
-unsigned int	ft_putnbrLL(long long n)
+void ft_putnbrLL(long long n)
 {
-	static unsigned int	sum;
-
+	
 	if (n < 0)
 		n = -n;
 	if (n / 10)
 		ft_putnbrLL(n / 10);
 	ft_putchar (n % 10 + '0');
-	return (++sum);
+	return ;
 
 }
