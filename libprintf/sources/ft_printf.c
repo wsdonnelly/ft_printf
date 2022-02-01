@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:51:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 12:51:50 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:19:24 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 	j = 0;
 	if (format[j] == '%')
 	{
-		cur->printed_length = write(1, "%", 1);
+		cur->printed_length = (unsigned int)write(1, "%", 1);
 		return (++j);
 	}
 	while (ft_strchr("#0-+ ", (int)format[j]))
@@ -59,9 +59,9 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 	while (ft_strchr("123456789", (int)format[j]))
 	{
 		//set width
-		cur->field_width = ft_atoi(&format[j]);
+		cur->field_width = (unsigned int)ft_atoi(&format[j]);
 		//increment
-		j += ft_num_digits(cur->field_width);
+		j += ft_num_digits((int)cur->field_width);
 	}
 	if (format[j] == '.')
 	{
@@ -71,9 +71,9 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 		if (ft_strchr("123456789", (int)format[j]))
 		{
 			//set precision
-			cur->precision = ft_atoi(&format[j]);
+			cur->precision = (unsigned int)ft_atoi(&format[j]);
 			//increment
-			j += ft_num_digits(cur->precision);
+			j += ft_num_digits((int)cur->precision);
 		}
 		//precision stays 0
 	}

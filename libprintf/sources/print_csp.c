@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:25:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/30 15:39:56 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:19:31 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void print_string(t_pformat *cur, va_list ap)
 		return ;
 	len = ft_strlen(str);
 	if (cur->precision > len)
-		cur->precision = len;
+		cur->precision = (unsigned int)len;
 	if (cur->minus)
 	{
 		if (cur->dot)

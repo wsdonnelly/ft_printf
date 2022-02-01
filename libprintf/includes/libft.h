@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 10:23:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/30 16:12:04 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:21:20 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ char	*ft_strtrim(char const *s);
 //personal
 int		ft_num_digits(int n);
 char	*ft_strset(size_t size, char c);
-int		ft_putnbr_base(unsigned long long n, int base, int flag);
+unsigned int	ft_putnbr_base(unsigned long long n, int base, int flag);
 #endif

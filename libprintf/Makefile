@@ -1,0 +1,50 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/01 12:30:42 by wdonnell          #+#    #+#              #
+#    Updated: 2022/02/01 12:32:18 by wdonnell         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME 		= libprintf.a
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
+EXTRA_FLAGS = -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
+SOURCES	= ft_printf.c util.c get_conversion.c print_csp.c print_ouxX.c print_di.c
+SRCS_DIR	= sources/
+SRCS		= $(addprefix	$(SRCS_DIR), $(SOURCES))
+OBJS		= $(addprefix	$(OBJS_DIR), $(SOURCES:.c=.o))
+OBJS_DIR	= objects/
+INCLUDES	= -I includes -I libft/includes
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@echo "Compiling ..."
+	make -sC libft
+	@cp libft/libft.a ./libprintf.a
+	@cp libft/includes/libft.h ./includes/
+	@ar rc $(NAME) $(OBJS) 
+	@@echo "Compiled"
+
+$(OBJS_DIR)%.o:	$(SRCS_DIR)%.c includes/ft_printf.h
+	@mkdir -p $(OBJS_DIR)
+	@$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(INCLUDES) -o $@ -c $< 
+
+clean:
+	@rm -rf $(OBJS_DIR)
+	@rm -f libft/objects/*.o
+	@make clean -C libft/
+
+fclean: clean
+	@rm -f $(NAME)
+	@rm -f libft/libft.a
+	@make clean -C libft/
+
+re: fclean all
+
+.PHONY: all clean fclean re

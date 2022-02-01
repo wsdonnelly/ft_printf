@@ -1,4 +1,5 @@
-#include "ft_printf.h"
+#include "libprintf/includes/ft_printf.h"
+
 #include <limits.h>
 #include <stdio.h>
 
@@ -11,7 +12,7 @@ int main ()
 	//int ret2;
 	//unsigned long long  n = 12345;
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
-	ret = ft_printf("%0-10d\n", 1234);
+	ret = ft_printf("%0-10.30d\n", -1234);
 	printf("ret: %d\n", ret);
 	//printf("REALi started and%% i did it!\n", x);
 	//ft_printf("ret: %# 0.20d\n", ret);

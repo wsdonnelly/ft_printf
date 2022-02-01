@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 14:13:10 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:18:41 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
  //maybe add to lib?
  //or make write blank
-int write_char(char c, size_t len)
+ssize_t write_char(char c, size_t len)
 {
 	size_t i;
-	int n;
+	ssize_t n;
 
 	n = 0;
 	i = 0;
@@ -29,9 +29,9 @@ int write_char(char c, size_t len)
 	return (n);
 }
 
-int putstr_len(char const *s, size_t len)
+size_t putstr_len(char const *s, size_t len)
 {
-	int n;
+	size_t n;
 	size_t i;
 
 	i = 0;
@@ -46,24 +46,23 @@ int putstr_len(char const *s, size_t len)
 	return (n);
 }
 
-unsigned int num_digits_base(unsigned long long n, int base)
+unsigned int num_digits_base(unsigned long long n, unsigned long long base)
 {
 	static unsigned int	sum;
 
 	if (n > 0)
 	{
 		num_digits_base(n / base, base);
-		if (n % base > 9)
-			return (++sum);
-		else
 			return (++sum);
 	}
+	else
+		return (++sum);
 	return (0);
 }
 
-int	ft_num_digitsLL(long long n)
+unsigned int	ft_num_digitsLL(long long n)
 {
-	int	num_digits;
+	unsigned int	num_digits;
 
 	num_digits = 0;
 	if (n == 0)
@@ -82,9 +81,9 @@ int	ft_num_digitsLL(long long n)
 ** returns number of digits
 */
 
-int	ft_putnbrLL(long long n)
+unsigned int	ft_putnbrLL(long long n)
 {
-	static int	sum;
+	static unsigned int	sum;
 
 	if (n < 0)
 		n = -n;

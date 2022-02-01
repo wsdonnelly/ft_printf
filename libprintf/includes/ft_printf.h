@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 11:40:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/01/31 14:13:21 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/01 12:24:27 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include "libft.h"
-
 typedef struct s_pformat
 {
 	unsigned char		hash;
@@ -29,17 +28,17 @@ typedef struct s_pformat
 	unsigned char		dot;
 	unsigned int		precision;
 	char	length_modifier[3];
-	int		printed_length;
+	unsigned int		printed_length;
 }				t_pformat;
 
 int	ft_printf(const char *format, ...);
 void get_conversion(char c, t_pformat *cur, va_list ap);
 //util
-int write_char(char c, size_t len);
-int putstr_len (char const *s, size_t len);
-unsigned int num_digits_base(unsigned long long n, int base);
-int	ft_putnbrLL(long long n);
-int	ft_num_digitsLL(long long n);
+ssize_t write_char(char c, size_t len);
+size_t putstr_len(char const *s, size_t len);
+unsigned int	ft_putnbrLL(long long n);
+unsigned int num_digits_base(unsigned long long n, unsigned long long base);
+unsigned int	ft_num_digitsLL(long long n);
 //printers
 void print_char(t_pformat *cur, va_list ap);
 void print_string(t_pformat *cur, va_list ap);
