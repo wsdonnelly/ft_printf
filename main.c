@@ -13,12 +13,12 @@ int main ()
 	int ret2;
 	//unsigned long long  n = 12345;
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
-	ret = ft_printf("@moulitest: %d %d", 1234, -9876);
+	ret = ft_printf("%c", 0);
 	printf("\n");
-	printf("ret: %d\n", ret);
-	ret2 = printf("@moulitest: %d %d", 1234, -9876);
+	printf("ret1: %d\n", ret);
+	ret2 = printf("%c", 0);
 	printf("\n");
-	printf("ret: %d\n", ret2);
+	printf("ret2: %d\n", ret2);
 
 	//printf("REALi started and%% i did it!\n", x);
 	//ft_printf("ret: %# 0.20d\n", ret);

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:25:17 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/01 16:46:46 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:47:22 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void print_pointer(t_pformat *cur, va_list ap)
 void print_percent(t_pformat *cur)
 {
 	
-	if (cur->hash || cur->zero || cur->plus)
-		return ;
+	//if (cur->hash || cur->zero || cur->plus)
+		//return ;
 	if (cur->space || cur->dot)
 	{
 		cur->printed_length += write (1, "%", 1);

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:51:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/01 14:12:08 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:42:40 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 	init_pformat(cur);
 	//loop through string and fill struct w/ data
 	j = 0;
-	
+	//if (!format[j])
+		//return (j);
 	while (ft_strchr("#0-+ ", (int)format[j]))
 	{
 		//set flags
@@ -94,7 +95,7 @@ static int find_format(va_list ap, const char *format, t_pformat *cur)
 		return (++j);
 	}
 
-	return (j);
+	return (0);
 
 }
 /*
@@ -135,14 +136,15 @@ int ft_printf(const char *format, ...)
 			//i += find_format(&format[i + 1], &cur) + 1;
 			//add to total printed
 			total += cur.printed_length;
-			
 		}
 		else
 		{
 			total += write(1, &format[i], 1);
 			i++;
+			
 		}
 	}
+	
 	va_end(ap);
 	//struct_tester(&cur);
 	return (total);
