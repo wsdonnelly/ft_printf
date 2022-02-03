@@ -8,17 +8,21 @@ int main ()
 {
 	//int x = 21;
 	//int y = 51;
-	//char *str = "HELLO WOLD";
+	//char *str = "HELLO WOLRD";
 	int ret;
 	int ret2;
 	//unsigned long long  n = 12345;
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
 
 
-	ret = ft_printf("%*.*d", 20, 30, 12345);
+	ret = ft_printf("%#*.*x",-50,  0, 0);
 	printf("\n");
 	printf("ret1: %d\n", ret);
-	ret2 = printf("%*.*d", 20, 30, 12345);
+	//ret = ft_printf("%*.%",20, 97);
+	//printf("\n");
+	//printf("ret1: %d\n", ret);
+
+	ret2 = printf("%#*.*x",-50,  0, 0);
 	printf("\n");
 	printf("ret2: %d\n", ret2);
 

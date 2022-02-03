@@ -5,28 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 17:18:48 by wdonnell         ###   ########.fr       */
+/*   Created: 2022/02/02 15:14:47 by wdonnell          #+#    #+#             */
+/*   Updated: 2022/02/03 15:22:27 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
+#include <stdio.h>
 
 static void	get_flags(const char *format, t_pformat *cur, int *j)
 {
 	while (ft_strchr("#0-+ ", (int)format[*j]))
 	{
 		if (format[*j] == '#')
-			cur->flags |= HASH;
+			cur->hash = 1;
 		else if (format[*j] == '0')
-			cur->flags |= ZERO;
+			cur->zero = 1;
 		else if (format[*j] == '-')
-			cur->flags |= MINUS;
+			cur->minus = 1;
 		else if (format[*j] == '+')
-			cur->flags |= PLUS;
+			cur->plus = 1;
 		else if (format[*j] == ' ')
-			cur->flags |= SPACE;
+			cur->space = 1;
 		(*j)++;
 	}
 }
@@ -41,7 +41,7 @@ static void	get_width(const char *format, t_pformat *cur, int *j, va_list ap)
 			cur->field_width = va_arg(ap, int);
 			if (cur->field_width < 0)
 			{
-				cur->flags |= MINUS;
+				cur->minus = 1;
 				cur->field_width *= -1;
 			}
 			(*j)++;
@@ -58,7 +58,7 @@ static void	get_precision(const char *format, t_pformat *cur, int *j, va_list ap
 {
 	if (format[*j] == '.')
 	{
-		cur->flags |= DOT;
+		cur->dot = 1;
 		(*j)++;
 		if (ft_strchr("0123456789*", (int)format[*j]))//ADD *
 		{
@@ -69,8 +69,7 @@ static void	get_precision(const char *format, t_pformat *cur, int *j, va_list ap
 				if (cur->field_width < 0)
 				{
 					cur->precision = 0;
-					cur->flags ^= DOT;
-
+					cur->dot = 0;
 				}
 				(*j)++;
 			}

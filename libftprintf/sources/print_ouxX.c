@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:36:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 15:07:52 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:42:14 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void print_prefix_ouxX(t_pformat *cur, char c, char flag)
 {
 	
 
-	if (cur->hash)
+	//if (cur->hash)
+	if (cur->flags & HASH)
 	{
 		if (c == 'p')
 			c = 'x';
@@ -36,7 +37,8 @@ static void print_prefix_ouxX(t_pformat *cur, char c, char flag)
 
 static void print_precision_ouxX(t_pformat *cur, int len, char c, unsigned long long n) //ouxX
 {
-	if (n == 0 && cur->dot && !cur->precision)
+	//if (n == 0 && cur->dot && !cur->precision)
+	if (n == 0 && (cur->flags & DOT) && !cur->precision)
 	{
 		//cur->printed_length--;
 		return;
@@ -72,7 +74,8 @@ static void	print_field_ouxX(t_pformat *cur, int len, char c, unsigned long long
 	printf("\ntotal len: %d\n", total_len);
 	//cur->printed_length += len;
 
-	if (cur->minus) //left
+	//if (cur->minus) //left
+	if (cur->flags & MINUS)
 	{
 		if (cur->field_width > total_len)
 		{
@@ -91,7 +94,8 @@ static void	print_field_ouxX(t_pformat *cur, int len, char c, unsigned long long
 	{
 		if (cur->field_width > total_len)
 		{
-			if (cur->zero && !cur->dot)
+			//if (cur->zero && !cur->dot)
+			if ((cur->flags & ZERO) && !(cur->flags & DOT))
 			{
 				print_prefix_ouxX(cur, c, flag);
 				cur->printed_length += write_char('0', cur->field_width - total_len);
@@ -116,7 +120,8 @@ void print_ouxX(t_pformat *cur, va_list ap, char c)
 	unsigned long long n;
 	int len;
 
-	if (cur->space || cur->plus || (cur->hash && c == 'u'))
+	//if (cur->space || cur->plus || (cur->hash && c == 'u'))
+	if ((cur->flags & SPACE & PLUS) || (cur->flags & HASH && c == 'u'))
 		return ;
 	//get modifier
 	if (cur->length_modifier[0] == 'l' || c == 'p')
@@ -138,7 +143,8 @@ void print_ouxX(t_pformat *cur, va_list ap, char c)
 	else 
 		len = num_digits_base(n, 16, 0);
 	
-	if ((cur->field_width >= cur->precision) && cur->hash && n != 0)
+	//if ((cur->field_width >= cur->precision) && cur->hash && n != 0)
+	if ((cur->field_width >= cur->precision) && cur->flags & HASH && n != 0)
 	{
 		if (c == 'o')
 			len++;
@@ -146,7 +152,8 @@ void print_ouxX(t_pformat *cur, va_list ap, char c)
 			len += 2;
 	}
 	
-	if ((c == 'x' || c == 'X' || c == 'o' || c == 'b' || c == 'p') && n == 0 && cur->dot && !cur->precision)
+	//if ((c == 'x' || c == 'X' || c == 'o' || c == 'b' || c == 'p') && n == 0 && cur->dot && !cur->precision)
+	if (c != 'u' && n == 0 && cur->flags & DOT && !cur->precision)
 		len--; //print nothing
 	
 	cur->printed_length += len;

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 16:16:57 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 15:09:50 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:28:28 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	print_prefix_di(t_pformat *cur, int positive)
 {
 	if (positive)
 	{
-		if (cur->plus)
+		if (cur->flags & PLUS)
 		{
 			cur->printed_length += write(1, "+", 1);
 			return ;
 		}
-		else if (cur->space)
+		else if (cur->flags & SPACE)
 			cur->printed_length += write(1, " ", 1);
 	}
 	else
@@ -30,7 +30,8 @@ static void	print_prefix_di(t_pformat *cur, int positive)
 
 static void	print_precision_di(t_pformat *cur, int len, long long n)
 {
-	if (n == 0 && cur->dot && !cur->precision)
+	//if (n == 0 && cur->dot && !cur->precision)
+	if (n == 0 && (cur->flags & DOT) && !cur->precision)//repeted later?
 		return ;
 	if (cur->precision > len)
 		cur->printed_length += write_char('0', cur->precision - len);
@@ -40,7 +41,7 @@ static void	print_precision_di(t_pformat *cur, int len, long long n)
 static void	print_field_di(t_pformat *cur, int len, long long n)
 {
 	int	total_len;
-	int				positive;
+	int	positive;
 
 	positive = 1;
 	if (n < 0)
@@ -50,9 +51,11 @@ static void	print_field_di(t_pformat *cur, int len, long long n)
 	else
 		total_len = len;
 	if (cur->field_width >= cur->precision)
-		if (cur->space || cur->plus || n < 0)
+		//if (cur->space || cur->plus || n < 0)
+		if (cur->flags & (SPACE | PLUS) || n < 0)
 			total_len++;
-	if (cur->minus) //left
+	//if (cur->minus) //left
+	if (cur->flags & MINUS)
 	{
 		if (cur->field_width > total_len)
 		{
@@ -68,7 +71,8 @@ static void	print_field_di(t_pformat *cur, int len, long long n)
 	{
 		if (cur->field_width > total_len)
 		{
-			if (cur->zero && !cur->dot)
+			//if (cur->zero && !cur->dot)
+			if ((cur->flags & ZERO) && !(cur->flags & DOT))
 			{
 				print_prefix_di(cur, positive);
 				cur->printed_length += write_char('0', cur->field_width - total_len);
@@ -90,7 +94,8 @@ void	print_di(t_pformat *cur, va_list ap)
 	int	len;
 	long long		n;
 
-	if (cur->hash)
+	//if (cur->hash)
+	if (cur->flags & HASH)
 		return ;
 	//get modifier
 	if (cur->length_modifier[0] == 'l')
@@ -104,7 +109,8 @@ void	print_di(t_pformat *cur, va_list ap)
 		n = (long long)va_arg(ap, int);
 	//get len
 	len = ft_num_digits_s(n);
-	if (n == 0 && cur->dot && !cur->precision)
+	//if (n == 0 && cur->dot && !cur->precision)
+	if (n == 0 && cur->flags & DOT && !cur->precision)
 		len--;
 	cur->printed_length += len;
 	print_field_di(cur, len, n);
