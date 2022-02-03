@@ -13,10 +13,12 @@ int main ()
 	int ret2;
 	//unsigned long long  n = 12345;
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
-	ret = ft_printf("%c", 0);
+
+
+	ret = ft_printf("%*.*d", 20, 30, 12345);
 	printf("\n");
 	printf("ret1: %d\n", ret);
-	ret2 = printf("%c", 0);
+	ret2 = printf("%*.*d", 20, 30, 12345);
 	printf("\n");
 	printf("ret2: %d\n", ret2);
 

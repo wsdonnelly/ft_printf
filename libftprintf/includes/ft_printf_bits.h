@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bits.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 11:40:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 15:13:21 by wdonnell         ###   ########.fr       */
+/*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
+/*   Updated: 2022/02/02 22:11:46 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,31 @@
 # include <stdlib.h>
 # include "libft.h"
 
+# define HASH	0x01	//0b00000001
+# define ZERO	0x02	//0b00000010
+# define MINUS	0x04	//0b00000100
+# define PLUS	0x08	//0b00001000
+# define SPACE	0x10	//0b00010000
+# define DOT	0x20	//0b00100000
+//undefined behavior for csp
+# define HZSP	0x1B	//0b00011011
 typedef struct s_pformat
 {
-	unsigned char		hash;
-	unsigned char		zero;
-	unsigned char		minus;
-	unsigned char		plus;
-	unsigned char		space;
-	int		field_width;
-	unsigned char		dot;
-	int		precision;
+	uint8_t				flags;
+	unsigned int		field_width;
+	unsigned int		precision;
 	char				length_modifier[3];
-	int		printed_length;
+	unsigned int		printed_length;
 }				t_pformat;
 
 int				ft_printf(const char *format, ...);
-void get_format_data(const char *format, t_pformat *cur, int *j, va_list ap);
+void			get_format_data(const char *format, t_pformat *cur, int *j);
 //util
-int			write_char(char c, int len);
-int			putstr_len(char const *s, int len);
+ssize_t			write_char(char c, size_t len);
+size_t			putstr_len(char const *s, size_t len);
 void			ft_putnbr_s(long long n);
-int	num_digits_base(unsigned long long n, unsigned long long base, int sum);
-int	ft_num_digits_s(long long n);
+unsigned int	num_digits_base(unsigned long long n, unsigned long long base, unsigned int sum);
+unsigned int	ft_num_digits_s(long long n);
 //printers
 void			print_percent(t_pformat *cur);
 void			print_char(t_pformat *cur, va_list ap);
@@ -49,5 +52,3 @@ void			print_ouxX(t_pformat *cur, va_list ap, char c);
 void			print_di(t_pformat *cur, va_list ap);
 
 #endif
-
-//%[$][flags][width][.precision][length modifier]conversion

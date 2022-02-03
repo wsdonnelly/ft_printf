@@ -6,18 +6,16 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/01 16:34:57 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:08:12 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
- //maybe add to lib?
- //or make write blank
-ssize_t write_char(char c, size_t len)
+int	write_char(char c, int len)
 {
-	size_t i;
-	ssize_t n;
+	int	i;
+	int	n;
 
 	n = 0;
 	i = 0;
@@ -29,15 +27,15 @@ ssize_t write_char(char c, size_t len)
 	return (n);
 }
 
-size_t putstr_len(char const *s, size_t len)
+int	putstr_len(char const *s, int len)
 {
-	size_t n;
-	size_t i;
+	int	n;
+	int	i;
 
 	i = 0;
 	n = 0;
 	if (!s)
-		return 0;
+		return (0);
 	while (i < len)
 	{
 		ft_putchar(s[i++]);
@@ -46,18 +44,18 @@ size_t putstr_len(char const *s, size_t len)
 	return (n);
 }
 
-unsigned int num_digits_base(unsigned long long n, unsigned long long base, unsigned int sum)
+int	num_digits_base(unsigned long long n, unsigned long long base, int sum)
 {
 	if (n == 0)
 		return (1);
 	if (n / base)
-	sum = num_digits_base(n / base, base, sum);
+		sum = num_digits_base(n / base, base, sum);
 	return (++sum);
 }
 
-unsigned int	ft_num_digitsLL(long long n)
+int	ft_num_digits_s(long long n)
 {
-	unsigned int	num_digits;
+	int	num_digits;
 
 	num_digits = 0;
 	if (n == 0)
@@ -75,14 +73,12 @@ unsigned int	ft_num_digitsLL(long long n)
 ** does not print sign
 */
 
-void ft_putnbrLL(long long n)
-{
-	
+void	ft_putnbr_s(long long n)
+{	
 	if (n < 0)
 		n = -n;
 	if (n / 10)
-		ft_putnbrLL(n / 10);
+		ft_putnbr_s(n / 10);
 	ft_putchar (n % 10 + '0');
 	return ;
-
 }
