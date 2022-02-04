@@ -6,12 +6,12 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 16:16:57 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 17:28:28 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:42:06 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 static void	print_prefix_di(t_pformat *cur, int positive)
 {
 	if (positive)
@@ -71,9 +71,11 @@ static void	print_field_di(t_pformat *cur, int len, long long n)
 	{
 		if (cur->field_width > total_len)
 		{
+			//printf("HERE<<<<<\n");
 			//if (cur->zero && !cur->dot)
 			if ((cur->flags & ZERO) && !(cur->flags & DOT))
 			{
+				
 				print_prefix_di(cur, positive);
 				cur->printed_length += write_char('0', cur->field_width - total_len);
 				print_precision_di(cur, len, n);
@@ -104,6 +106,13 @@ void	print_di(t_pformat *cur, va_list ap)
 			n = va_arg(ap, long long);
 		else
 			n = (long long)va_arg(ap, long);
+	}
+	else if (cur->length_modifier[0] == 'h')
+	{
+		if (cur->length_modifier[1] == 'h')
+			n = (char)va_arg(ap, int);
+		else
+			n = (short)va_arg(ap, int);
 	}
 	else
 		n = (long long)va_arg(ap, int);

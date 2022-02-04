@@ -6,14 +6,15 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:36:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 17:42:14 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/04 14:12:41 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static void print_prefix_ouxX(t_pformat *cur, char c, char flag)
+/*
+static void print_prefix_ouxX(t_pformat *cur, char c, char positive)
 {
 	
 
@@ -23,10 +24,33 @@ static void print_prefix_ouxX(t_pformat *cur, char c, char flag)
 		if (c == 'p')
 			c = 'x';
 		//cur->printed_length += write(1, "0", 1);
-		if ((c == 'x' || c == 'X' || c == 'b') && !flag)
+		
+
+		if ((c == 'x' || c == 'X' || c == 'b') && !positive)
 			return ;
-		if (c == 'o' && !flag)
+		if (c == 'o' && !positive)
 			cur->printed_length++;
+		write(1, "0", 1);
+		if (c == 'x' || c == 'X')
+			write(1, &c, 1);
+		else if (c == 'b')
+			write (1, "b", 1);
+	}
+}
+*/
+
+static void print_prefix_ouxX(t_pformat *cur, char c, char positive)
+{
+	if (c == 'p')
+		c = 'x';
+	if (cur->flags & HASH)
+	{
+		if (!positive)
+		{
+			if (c == 'o'&& (cur->flags & DOT) && !cur->precision)
+				cur->printed_length+= (int)write(1, "0", 1);
+			return ;
+		}
 		write(1, "0", 1);
 		if (c == 'x' || c == 'X')
 			write(1, &c, 1);
@@ -37,12 +61,10 @@ static void print_prefix_ouxX(t_pformat *cur, char c, char flag)
 
 static void print_precision_ouxX(t_pformat *cur, int len, char c, unsigned long long n) //ouxX
 {
-	//if (n == 0 && cur->dot && !cur->precision)
+
+
 	if (n == 0 && (cur->flags & DOT) && !cur->precision)
-	{
-		//cur->printed_length--;
 		return;
-	}
 	if (cur->precision > len)
 		cur->printed_length += write_char('0', cur->precision - len);
 	if (c == 'b')
@@ -71,7 +93,7 @@ static void	print_field_ouxX(t_pformat *cur, int len, char c, unsigned long long
 	else 
 		total_len = len;
 	
-	printf("\ntotal len: %d\n", total_len);
+	//printf("\ntotal len: %d\n", total_len);
 	//cur->printed_length += len;
 
 	//if (cur->minus) //left
@@ -131,6 +153,13 @@ void print_ouxX(t_pformat *cur, va_list ap, char c)
 		else
 			n = (unsigned long long)va_arg(ap, unsigned long);
 	}
+	else if (cur->length_modifier[0] == 'h')
+	{
+		if (cur->length_modifier[1] == 'h')
+			n = (unsigned char)va_arg(ap, unsigned int);
+		else
+			n = (unsigned short)va_arg(ap, unsigned int);
+	}
 	else
 		n = (unsigned long long)va_arg(ap, unsigned int);
 	//get len
@@ -153,7 +182,7 @@ void print_ouxX(t_pformat *cur, va_list ap, char c)
 	}
 	
 	//if ((c == 'x' || c == 'X' || c == 'o' || c == 'b' || c == 'p') && n == 0 && cur->dot && !cur->precision)
-	if (c != 'u' && n == 0 && cur->flags & DOT && !cur->precision)
+	if (n == 0 && cur->flags & DOT && !cur->precision)
 		len--; //print nothing
 	
 	cur->printed_length += len;

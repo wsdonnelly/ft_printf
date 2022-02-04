@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 16:12:15 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/04 11:57:32 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,14 @@ int	ft_num_digits_s(long long n)
 void	ft_putnbr_s(long long n)
 {	
 	if (n < 0)
+	{
+		if (n == LONG_MIN)
+		{
+			ft_putstr("9223372036854775808");
+			return ;
+		}
 		n = -n;
+	}
 	if (n / 10)
 		ft_putnbr_s(n / 10);
 	ft_putchar (n % 10 + '0');

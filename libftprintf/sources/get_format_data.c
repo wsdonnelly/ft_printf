@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 17:18:48 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/04 11:22:44 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	get_precision(const char *format, t_pformat *cur, int *j, va_list ap
 			{
 				cur->precision = va_arg(ap, int);
 				//A negative precision argument is taken as if the precision were omitted.
-				if (cur->field_width < 0)
+				if (cur->precision < 0)
 				{
 					cur->precision = 0;
 					cur->flags ^= DOT;

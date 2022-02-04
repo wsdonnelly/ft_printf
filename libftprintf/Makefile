@@ -6,14 +6,14 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 12:30:42 by wdonnell          #+#    #+#              #
-#    Updated: 2022/02/03 17:39:53 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/02/04 13:07:35 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= libftprintf.a
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
-EXTRA_FLAGS = -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
+#CFLAGS		= -Wall -Wextra -Werror
+#EXTRA_FLAGS = -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
 SOURCES	= ft_printf.c get_format_data.c util.c print_csp.c print_di.c print_ouxX.c 
 SRCS_DIR	= sources/
 SRCS		= $(addprefix	$(SRCS_DIR), $(SOURCES))
@@ -36,7 +36,7 @@ $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c includes/ft_printf.h
 	@$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(INCLUDES) -o $@ -c $< 
 
 clean:
-	@rm -rf $(OBJS_DIR)
+	@rm -rf $(OBJS_DIR)#
 	@rm -f libft/objects/*.o
 	@make clean -C libft/
 
