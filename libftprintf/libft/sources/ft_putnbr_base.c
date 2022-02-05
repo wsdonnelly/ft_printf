@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:19:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/01 16:18:22 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/05 11:53:51 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** from base 2 to 38 (extend to base 72 w/flag or base 40 w/o flag)
 ** if flag print upper case else lower case
-** returns number of digits
+** 
 */
 
 void	ft_putnbr_base(unsigned long long n, int base, int flag)
