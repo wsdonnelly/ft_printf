@@ -6,7 +6,7 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 12:30:42 by wdonnell          #+#    #+#              #
-#    Updated: 2022/02/05 11:53:42 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/02/05 14:05:19 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 		= libftprintf.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 EXTRA_FLAGS = -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
-SOURCES	= ft_printf.c get_format_data.c util.c print_csp.c print_di.c print_ouxX.c 
+SOURCES	= ft_printf.c get_format_data.c util.c print_csp.c print_di.c print_ouxX.c print_float.c
 SRCS_DIR	= sources/
 SRCS		= $(addprefix	$(SRCS_DIR), $(SOURCES))
 OBJS		= $(addprefix	$(OBJS_DIR), $(SOURCES:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/04 11:56:34 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/05 14:12:35 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	print_string(t_pformat *cur, va_list ap);
 void	print_pointer(t_pformat *cur, va_list ap);
 void	print_ouxX(t_pformat *cur, va_list ap, char c);
 void	print_di(t_pformat *cur, va_list ap);
+void	print_float(t_pformat *cur, va_list ap);
 
 #endif
