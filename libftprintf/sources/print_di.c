@@ -6,27 +6,11 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 16:16:57 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/04 13:42:06 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:25:08 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-static void	print_prefix_di(t_pformat *cur, int positive)
-{
-	if (positive)
-	{
-		if (cur->flags & PLUS)
-		{
-			cur->printed_length += write(1, "+", 1);
-			return ;
-		}
-		else if (cur->flags & SPACE)
-			cur->printed_length += write(1, " ", 1);
-	}
-	else
-		cur->printed_length += write(1, "-", 1);
-}
 
 static void	print_precision_di(t_pformat *cur, int len, long long n)
 {
@@ -59,12 +43,12 @@ static void	print_field_di(t_pformat *cur, int len, long long n)
 	{
 		if (cur->field_width > total_len)
 		{
-			print_prefix_di(cur, positive);
+			print_prefix_signed(cur, positive);
 			print_precision_di (cur, len, n);
 			cur->printed_length += write_char(' ', cur->field_width - total_len);
 			return ;
 		}
-		print_prefix_di(cur, positive);
+		print_prefix_signed(cur, positive);
 		print_precision_di(cur, len, n);
 	}
 	else //right
@@ -76,17 +60,17 @@ static void	print_field_di(t_pformat *cur, int len, long long n)
 			if ((cur->flags & ZERO) && !(cur->flags & DOT))
 			{
 				
-				print_prefix_di(cur, positive);
+				print_prefix_signed(cur, positive);
 				cur->printed_length += write_char('0', cur->field_width - total_len);
 				print_precision_di(cur, len, n);
 				return ;
 			}
 			cur->printed_length += write_char(' ', cur->field_width - total_len);
-			print_prefix_di(cur, positive);
+			print_prefix_signed(cur, positive);
 			print_precision_di(cur, len, n);
 			return ;
 		}
-		print_prefix_di(cur, positive);
+		print_prefix_signed(cur, positive);
 		print_precision_di(cur, len, n);
 	}
 }

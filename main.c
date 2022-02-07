@@ -10,17 +10,17 @@ int main ()
 	//int y = 51;
 	//char *str = "HELLO WOLRD";
 	int ret;
-	double n = 105067845.056 / 33987.78;
-	//unsigned long long  n = 12345;
+	double n = 10.0 / 2.9735;
+	 //int n = 123456;
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
 
 	
-	ret = ft_printf("%.10f", n);
+	ret = ft_printf("%#10.12f", n);
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
 
-	ret =  printf("%.10f", n);
+	ret =  printf("%#10.12f", n);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/04 11:22:44 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:23:33 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	get_flags(const char *format, t_pformat *cur, int *j)
 
 static void	get_width(const char *format, t_pformat *cur, int *j, va_list ap)
 {
-	while (ft_strchr("123456789*", (int)format[*j])) //ADD *
+	while (ft_strchr("123456789*", (int)format[*j]))
 	{
 		if (format[*j] == '*')
 		{
@@ -60,12 +60,11 @@ static void	get_precision(const char *format, t_pformat *cur, int *j, va_list ap
 	{
 		cur->flags |= DOT;
 		(*j)++;
-		if (ft_strchr("0123456789*", (int)format[*j]))//ADD *
+		if (ft_strchr("0123456789*", (int)format[*j]))
 		{
 			if (format[*j] == '*')
 			{
 				cur->precision = va_arg(ap, int);
-				//A negative precision argument is taken as if the precision were omitted.
 				if (cur->precision < 0)
 				{
 					cur->precision = 0;
