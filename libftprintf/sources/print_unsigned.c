@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:36:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/07 16:35:01 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:11:59 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void print_precision_ouxX(t_pformat *cur, int len, char c, unsigned long 
 	if (n == 0 && (cur->flags & DOT) && !cur->precision)
 		return;
 	if (cur->precision > len)
-		cur->printed_length += write_char('0', cur->precision - len);
+		cur->length += write_char('0', cur->precision - len);
 	if (c == 'b')
 		ft_putnbr_base(n, 2, 0);
 	else if (c == 'o')
@@ -36,7 +36,7 @@ static void unsigned_left_algin(t_pformat *cur, int len, int total_len, char c, 
 	{
 		print_prefix_unsigned(cur, c, flag);
 		print_precision_ouxX (cur, len, c, n);
-		cur->printed_length += write_char(' ', cur->field_width - total_len);
+		cur->length += write_char(' ', cur->field_width - total_len);
 		return ;
 	}
 	print_prefix_unsigned(cur, c, flag);
@@ -50,11 +50,11 @@ static void unsigned_right_align(t_pformat *cur, int len, int total_len, char c,
 		if ((cur->flags & ZERO) && !(cur->flags & DOT))
 		{
 			print_prefix_unsigned(cur, c, flag);
-			cur->printed_length += write_char('0', cur->field_width - total_len);
+			cur->length += write_char('0', cur->field_width - total_len);
 			print_precision_ouxX (cur, len, c, n);
 			return ;
 		}
-		cur->printed_length += write_char(' ', cur->field_width - total_len);
+		cur->length += write_char(' ', cur->field_width - total_len);
 		print_prefix_unsigned(cur, c, flag);
 		print_precision_ouxX (cur, len, c, n);
 		return ;
@@ -107,7 +107,7 @@ static int get_len_unsigned(t_pformat *cur, unsigned long long n, char c)
 		len = num_digits_base(n, 16, 0);
 	if (n == 0 && cur->flags & DOT && !cur->precision)
 		len--; 
-	cur->printed_length += len;
+	cur->length += len;
 	return (len);
 }
 

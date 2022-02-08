@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/07 15:29:42 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:10:29 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	get_conversion(char c, t_pformat *cur, va_list ap)
 		print_string(cur, ap);
 	else if (c == 'd' || c == 'i')
 		print_di(cur, ap);
-	else if (c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 'b' || c == 'p')
+	else if (c == 'o' || c == 'u' || c == 'x' \
+		|| c == 'X' || c == 'b' || c == 'p')
 		print_unsigned(cur, ap, c);
 	else if (c == 'f')
 		print_float(cur, ap);
@@ -34,7 +35,7 @@ static void	init_pformat(t_pformat *cur)
 	cur->field_width = 0;
 	cur->precision = 0;
 	ft_bzero(&cur->length_modifier, sizeof(char) * 3);
-	cur->printed_length = 0;
+	cur->length = 0;
 }
 
 static int	find_format(va_list ap, const char *format, t_pformat *cur)
@@ -69,7 +70,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i += find_format(ap, &format[i + 1], &cur) + 1;
-			total += cur.printed_length;
+			total += cur.length;
 		}
 		else
 		{

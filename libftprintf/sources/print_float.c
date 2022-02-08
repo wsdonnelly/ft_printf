@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:15:47 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/07 15:23:15 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 13:11:26 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	print_field_f(t_pformat *cur, int len, int len_int_part, long double
 		{
 			print_prefix_signed(cur, positive);
 			print_precision_f(cur, n, len_int_part - 1);
-			cur->printed_length += write_char(' ', cur->field_width - total_len);
+			cur->length += write_char(' ', cur->field_width - total_len);
 			return ;
 		}
 		print_prefix_signed(cur, positive);
@@ -89,11 +89,11 @@ static void	print_field_f(t_pformat *cur, int len, int len_int_part, long double
 			{
 				
 				print_prefix_signed(cur, positive);
-				cur->printed_length += write_char('0', cur->field_width - total_len);
+				cur->length += write_char('0', cur->field_width - total_len);
 				print_precision_f(cur, n, len_int_part - 1);
 				return ;
 			}
-			cur->printed_length += write_char(' ', cur->field_width - total_len);
+			cur->length += write_char(' ', cur->field_width - total_len);
 			print_prefix_signed(cur, positive);
 			print_precision_f(cur, n, len_int_part - 1);
 			return ;
@@ -119,9 +119,9 @@ void print_float(t_pformat *cur, va_list ap)
 	//get printed len
 	len_int_part = ft_num_digits_s((long)n);
 	if (cur->precision || cur->flags & HASH)
-		cur->printed_length = len_int_part + cur->precision + 1;
+		cur->length = len_int_part + cur->precision + 1;
 	else
-		cur->printed_length = len_int_part;
-	print_field_f (cur, cur->printed_length, len_int_part, n);
+		cur->length = len_int_part;
+	print_field_f (cur, cur->length, len_int_part, n);
 }
 

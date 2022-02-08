@@ -6,10 +6,9 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/07 15:23:33 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:42:42 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -37,7 +36,6 @@ static void	get_width(const char *format, t_pformat *cur, int *j, va_list ap)
 	{
 		if (format[*j] == '*')
 		{
-
 			cur->field_width = va_arg(ap, int);
 			if (cur->field_width < 0)
 			{
@@ -54,7 +52,7 @@ static void	get_width(const char *format, t_pformat *cur, int *j, va_list ap)
 	}
 }
 
-static void	get_precision(const char *format, t_pformat *cur, int *j, va_list ap )
+static void	get_pre(const char *format, t_pformat *cur, int *j, va_list ap)
 {
 	if (format[*j] == '.')
 	{
@@ -69,7 +67,6 @@ static void	get_precision(const char *format, t_pformat *cur, int *j, va_list ap
 				{
 					cur->precision = 0;
 					cur->flags ^= DOT;
-
 				}
 				(*j)++;
 			}
@@ -95,10 +92,10 @@ static void	get_length_modifier(const char *format, t_pformat *cur, int *j)
 	}
 }
 
-void get_format_data(const char *format, t_pformat *cur, int *j, va_list ap)
+void	get_format_data(const char *format, t_pformat *cur, int *j, va_list ap)
 {
 	get_flags(format, cur, j);
 	get_width(format, cur, j, ap);
-	get_precision(format, cur, j, ap);
+	get_pre(format, cur, j, ap);
 	get_length_modifier(format, cur, j);
 }

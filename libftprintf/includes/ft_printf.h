@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/07 15:29:11 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:57:23 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_pformat
 	int		field_width;
 	int		precision;
 	char	length_modifier[3];
-	int		printed_length;
+	int		length;
 }				t_pformat;
 
 int		ft_printf(const char *format, ...);
