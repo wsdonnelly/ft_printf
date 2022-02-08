@@ -15,12 +15,12 @@ int main ()
 	//ret = ft_printf("here's a num: %#llX and here be %c\n", n, '@');
 
 	
-	ret = ft_printf("%#c", 0);
+	ret = ft_printf("% c", 0);
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
 
-	ret =  printf("%#c", 0);
+	ret =  printf("% c", 0);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 
