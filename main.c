@@ -8,7 +8,7 @@ int main ()
 	char *str = "HELLO WOLRD";
 	int ret;
 	//double n = 1.5 / .00345;
-	unsigned int n = UINT_MAX;
+	//unsigned int n = UINT_MAX;
 	
 
 	
