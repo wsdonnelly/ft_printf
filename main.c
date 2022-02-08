@@ -12,12 +12,12 @@ int main ()
 	
 
 	
-	ret = ft_printf("%p", &str);
+	ret = ft_printf("%20p", &str);
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
 
-	ret =  printf("%p", &str);
+	ret =  printf("%20p", &str);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 

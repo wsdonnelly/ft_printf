@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 13:10:29 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:10:22 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static void	get_conversion(char c, t_pformat *cur, va_list ap)
 		print_percent(cur);
 	if (c == 'c')
 		print_char(cur, ap);
+	if (c == 'p')
+		print_pointer(cur, ap);
 	else if (c == 's')
 		print_string(cur, ap);
 	else if (c == 'd' || c == 'i')
 		print_di(cur, ap);
 	else if (c == 'o' || c == 'u' || c == 'x' \
-		|| c == 'X' || c == 'b' || c == 'p')
+		|| c == 'X' || c == 'b')
 		print_unsigned(cur, ap, c);
 	else if (c == 'f')
 		print_float(cur, ap);

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 14:53:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 12:58:06 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:05:58 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	print_prefix_signed(t_pformat *cur, int positive)
 
 void	print_prefix_unsigned(t_pformat *cur, char c, int positive)
 {
-	if (c == 'p')
-		c = 'x';
 	if (cur->flags & HASH)
 	{
 		if (!positive)

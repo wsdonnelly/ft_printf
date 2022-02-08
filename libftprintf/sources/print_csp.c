@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:04:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 13:14:26 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:15:06 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,30 @@ void	print_string(t_pformat *cur, va_list ap)
 		str_align_left(cur, len, str);
 	else
 		str_align_right(cur, len, str);
+}
+
+void print_pointer(t_pformat *cur, va_list ap)
+{
+	unsigned long n;
+
+	if (cur->flags & HZSP)
+		return ;
+	n = (unsigned long)va_arg(ap, void *);
+	cur->length = num_digits_base(n, 16, 0) + 2;
+	if (cur->field_width > cur->length)
+	{
+		if (cur->flags & MINUS)
+		{
+			write (1, "0x", 2);
+			ft_putnbr_base(n, 16, 0);
+			cur->length += write_char(' ', cur->field_width - cur->length);
+			return ;
+		}
+		cur->length += write_char(' ', cur->field_width - cur->length);
+		write (1, "0x", 2);
+		ft_putnbr_base(n, 16, 0);
+		return ;
+	}
+	write (1, "0x", 2);
+	ft_putnbr_base(n, 16, 0);
 }
