@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/04 11:57:32 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:23:12 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,6 @@ int	ft_num_digits_s(long long n)
 	}
 	return (num_digits);
 }
-
-/*
-** writes to stdout up to signed long long
-** does not print sign
-*/
 
 void	ft_putnbr_s(long long n)
 {	

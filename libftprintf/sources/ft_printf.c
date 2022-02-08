@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/03 17:38:54 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:29:42 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void	get_conversion(char c, t_pformat *cur, va_list ap)
 	else if (c == 'd' || c == 'i')
 		print_di(cur, ap);
 	else if (c == 'o' || c == 'u' || c == 'x' || c == 'X' || c == 'b' || c == 'p')
-		print_ouxX(cur, ap, c);
-	//else if (c == 'f')
-		//print_float(cur, ap);
+		print_unsigned(cur, ap, c);
+	else if (c == 'f')
+		print_float(cur, ap);
 }
 
 static void	init_pformat(t_pformat *cur)

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/04 11:56:34 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:29:11 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ void	print_percent(t_pformat *cur);
 void	print_char(t_pformat *cur, va_list ap);
 void	print_string(t_pformat *cur, va_list ap);
 void	print_pointer(t_pformat *cur, va_list ap);
-void	print_ouxX(t_pformat *cur, va_list ap, char c);
+void	print_unsigned(t_pformat *cur, va_list ap, char c);
 void	print_di(t_pformat *cur, va_list ap);
+void	print_float(t_pformat *cur, va_list ap);
+//prefix
+void	print_prefix_signed(t_pformat *cur, int positive);
+void	print_prefix_unsigned(t_pformat *cur, char c, int positive);
+//len
+//int get_len_unsigned(t_pformat *cur, unsigned long long n, char c);
 
 #endif
