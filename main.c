@@ -12,12 +12,12 @@ int main ()
 	
 
 	
-	ret = ft_printf("%#18.4x", n);
+	ret = ft_printf("%p", &str);
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
 
-	ret =  printf("%#18.4x", n);
+	ret =  printf("%p", &str);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 
