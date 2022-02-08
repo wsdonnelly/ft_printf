@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:36:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 14:41:00 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 15:53:20 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ static void	print_field_unsigned(t_pformat *cur, int len, char c, unsigned long 
 	if (n == 0)
 		flag = 0;
 	total_len = 0;
+	if (cur->precision > len)
+		total_len = cur->precision;
+	else
+		total_len = len;
 	if ((cur->flags & HASH) && n != 0)
 	{
 		if (c == 'o')
@@ -82,10 +86,7 @@ static void	print_field_unsigned(t_pformat *cur, int len, char c, unsigned long 
 		else if (c == 'x' || c == 'X' || c == 'b' || c == 'p')
 			total_len += 2;
 	}
-	if (cur->precision > len)
-		total_len = cur->precision;
-	else
-		total_len = len;
+
 	if (cur->flags & MINUS)
 		unsigned_left_algin(cur, len , total_len, c, n, flag);
 	else

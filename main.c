@@ -7,17 +7,17 @@ int main ()
 {
 	char *str = "HELLO WOLRD";
 	int ret;
-	double n = 1.5 / .00345;
-	//unsigned int n = 0;
+	//double n = 1.5 / .00345;
+	unsigned int n = UINT_MAX;
 	
 
 	
-	ret = ft_printf("%.13f", n);
+	ret = ft_printf("%#18.4x", n);
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
 
-	ret =  printf("%.13f", n);
+	ret =  printf("%#18.4x", n);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 
