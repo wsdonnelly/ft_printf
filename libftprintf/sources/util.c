@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/07 15:23:12 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:56:52 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,20 @@ void	ft_putnbr_s(long long n)
 		ft_putnbr_s(n / 10);
 	ft_putchar (n % 10 + '0');
 	return ;
+}
+
+long double	round_double(long double nb, int precision)
+{
+	long double	rounder;
+	int			i;
+
+	rounder = 0.5;
+	i = precision;
+	while (i-- > 0)
+		rounder /= 10;
+	if (nb < 0)
+		nb -= rounder;
+	else
+		nb += rounder;
+	return (nb);
 }

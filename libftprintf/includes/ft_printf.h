@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 12:57:23 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:57:17 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		putstr_len(char const *s, int len);
 void	ft_putnbr_s(long long n);
 int		num_digits_base(unsigned long long n, unsigned long long base, int sum);
 int		ft_num_digits_s(long long n);
+long double	round_double(long double nb, int precision);
 //printers
 void	print_percent(t_pformat *cur);
 void	print_char(t_pformat *cur, va_list ap);
@@ -58,5 +59,8 @@ void	print_prefix_signed(t_pformat *cur, int positive);
 void	print_prefix_unsigned(t_pformat *cur, char c, int positive);
 //len
 //int get_len_unsigned(t_pformat *cur, unsigned long long n, char c);
+//modifier
+void	get_modifier_s(t_pformat *cur, va_list ap, long long *nb);
+void	get_modifier_u(t_pformat *cur, va_list ap, unsigned long long *nb);
 
 #endif
