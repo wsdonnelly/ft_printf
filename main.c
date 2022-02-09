@@ -5,19 +5,19 @@
 
 int main ()
 {
-	char *str = "HELLO WOLRD";
+	//char *str = "HELLO WOLRD";
 	int ret;
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
 	
 
 	
-	ret = ft_printf("%p", &str);
+	ret = ft_printf("%5.o%5.0o", 0, 0);
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
 
-	ret =  printf("%p", &str);
+	ret =  printf("%5.o%5.0o", 0, 0);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 

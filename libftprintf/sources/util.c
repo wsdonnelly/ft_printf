@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 14:56:52 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/09 15:53:36 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,24 @@ long double	round_double(long double nb, int precision)
 	else
 		nb += rounder;
 	return (nb);
+}
+
+int strchr_i(const char *s, int c)
+{
+	int	i;
+	char			*p;
+	char			cc;
+
+	cc = (char)c;
+	p = (char *)s;
+	i = 0;
+	if (*p == '\0' && cc != '\0')
+		return (-1);
+	while (p[i] != cc && p[i] != '\0')
+	{
+		i++;
+		if (p[i] == '\0')
+			return (-1);
+	}
+	return (i);
 }
