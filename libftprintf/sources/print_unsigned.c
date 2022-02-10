@@ -5,122 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2022/01/29 15:36:58 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 16:30:59 by wdonnell         ###   ########.fr       */
-=======
 /*   Created: 2022/02/09 15:37:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/09 16:01:54 by wdonnell         ###   ########.fr       */
->>>>>>> full
+/*   Updated: 2022/02/10 11:39:02 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void print_unsigned(t_pformat *cur, va_list ap)
+static void print_precision_unsigned(t_pformat *cur, unsigned long long n)
 {
-<<<<<<< HEAD
-	if (n == 0 && (cur->flags & DOT) && !cur->precision)
-		return ;
-	if (cur->precision > len)
-		cur->length += write_char('0', cur->precision - len);
-	if (c == 'b')
-		ft_putnbr_base(n, 2, 0);
-	else if (c == 'o')
-		ft_putnbr_base(n, 8, 0);
-	else if (c == 'u')
-		ft_putnbr_base(n, 10, 0);
-	else if (c == 'x' || c == 'p')
-		ft_putnbr_base(n, 16, 0);
-	else if (c == 'X')
-		ft_putnbr_base(n, 16, 1);
-}
-
-static void	unsigned_left_algin(t_pformat *cur, int len, int total_len, char c, unsigned long long n, int flag)
-{
-	if (cur->field_width > total_len)
+	if (n == 0)
 	{
-		print_prefix_unsigned(cur, c, flag);
-		print_precision_u(cur, len, c, n);
-		cur->length += write_char(' ', cur->field_width - total_len);
-		return ;
-	}
-	print_prefix_unsigned(cur, c, flag);
-	print_precision_u(cur, len, c, n);
-}
-
-static void	unsigned_right_align(t_pformat *cur, int len, int total_len, char c, unsigned long long n, int flag)
-{
-	if (cur->field_width > total_len)
-	{
-		if ((cur->flags & ZERO) && !(cur->flags & DOT))
+		if (((cur->flags & DOT) && !cur->precision))
 		{
-			print_prefix_unsigned(cur, c, flag);
-			cur->length += write_char('0', cur->field_width - total_len);
-			print_precision_u(cur, len, c, n);
+			cur->length--;
 			return ;
 		}
-		cur->length += write_char(' ', cur->field_width - total_len);
-		print_prefix_unsigned(cur, c, flag);
-		print_precision_u(cur, len, c, n);
+	}
+	if (cur->precision > cur->length)
+		cur->length += write_char('0', cur->precision - cur->length);
+	ft_putnbr_base(n, 10, 0);
+}
+
+static void	left_align_unsigned(t_pformat *cur, unsigned long long n, int base_len)
+{
+	if (cur->field_width > base_len)
+	{
+		print_precision_unsigned(cur, n);
+		cur->length += write_char(' ', cur->field_width - base_len);
 		return ;
 	}
-	print_prefix_unsigned(cur, c, flag);
-	print_precision_u(cur, len, c, n);
+	print_precision_unsigned(cur, n);
 }
 
-static void	print_field_unsigned(t_pformat *cur, int len, char c, unsigned long long n)
+static void	right_align_unsigned(t_pformat *cur, unsigned long long n, int base_len)
 {
-	int		total_len;
-	char	flag;
-
-	flag = 1;
-	if (n == 0)
-		flag = 0;
-	total_len = 0;
-	if (cur->precision > len)
-		total_len = cur->precision;
-	else
-		total_len = len;
-	if ((cur->flags & HASH) && n != 0)
+	if (cur->field_width > base_len)
 	{
-		if (c == 'o')
-		{
-			len++;
-			total_len++;
-		}
-		else if (c == 'x' || c == 'X' || c == 'b' || c == 'p')
-			total_len += 2;
+		if ((cur->flags & ZERO) && !(cur->flags & DOT))
+			write_char('0', cur->field_width - base_len);
+		else
+			write_char(' ', cur->field_width - base_len);
+		print_precision_unsigned(cur, n);
+		cur->length = cur->field_width;
+		return ;
 	}
-	if (cur->flags & MINUS)
-		unsigned_left_algin(cur, len , total_len, c, n, flag);
-	else
-		unsigned_right_align(cur, len, total_len, c, n, flag);
+	print_precision_unsigned(cur, n);
 }
 
-void	print_unsigned(t_pformat *cur, va_list ap, char c)
+void print_unsigned(t_pformat *cur, va_list ap)
 {
 	unsigned long long	n;
-	int					len;
+	int					base_len;
 
-	if ((cur->flags & SPACE & PLUS) || (cur->flags & HASH && c == 'u'))
+	if (cur->flags & HSP)
 		return ;
 	get_modifier_u(cur, ap, &n);
-	if (c == 'o')
-		len = num_digits_base(n, 8, 0);
-	else if (c == 'u')
-		len = num_digits_base(n, 10, 0);
-	else if (c == 'b')
-		len = num_digits_base(n, 2, 0);
+	cur->length = num_digits_base(n, 10, 0);
+	base_len = cur->length;
+	if (cur->precision > base_len)
+		base_len = cur->precision;
+	if (n == 0 && (cur->flags & DOT) && !cur->precision)
+		base_len = 0;
+	if (cur->flags & MINUS)
+		left_align_unsigned(cur, n, base_len);
 	else
-		len = num_digits_base(n, 16, 0);
-	if (n == 0 && cur->flags & DOT && !cur->precision)
-		len--; 
-	cur->length += len;
-	print_field_unsigned(cur, len, c, n);
-=======
-	ap = NULL;
-	cur->length = 0;
-	return ;
->>>>>>> full
+		right_align_unsigned(cur, n, base_len);
 }

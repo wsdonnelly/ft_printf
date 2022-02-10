@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:51:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/09 16:35:04 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:21:40 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ void	print_octal(t_pformat *cur, va_list ap)
 	}
 	if (cur->precision > base_len)
 		base_len = cur->precision;
-	
-	//printf("baselen: %d\n", base_len);
 	if (cur->flags & MINUS)
 		left_align_octal(cur, n, base_len);
 	else

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/09 16:22:42 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:28:46 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 # define PLUS	0x08	//0b00001000
 # define SPACE	0x10	//0b00010000
 # define DOT	0x20	//0b00100000
+//undefined behavior
 # define HZSP	0x1B	//0b00011011
+# define HSP	0x19	//0b00011001
 
 typedef struct s_pformat
 {
