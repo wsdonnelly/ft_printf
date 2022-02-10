@@ -6,7 +6,11 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 14:53:58 by wdonnell          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/02/08 16:05:58 by wdonnell         ###   ########.fr       */
+=======
+/*   Updated: 2022/02/08 19:03:32 by wdonnell         ###   ########.fr       */
+>>>>>>> full
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +42,12 @@ void	print_prefix_unsigned(t_pformat *cur, char c, int positive)
 				cur->length += write (1, "0", 1);
 			return ;
 		}
-		cur->length += write(1, "0", 1);
+		if (c == 'o' && cur->precision > cur->length)
+			return;
+		write(1, "0", 1);
 		if (c == 'x' || c == 'X')
-			cur->length += write(1, &c, 1);
+			write(1, &c, 1);
 		else if (c == 'b')
-			cur->length += write(1, "b", 1);
+			 write(1, "b", 1);
 	}
 }

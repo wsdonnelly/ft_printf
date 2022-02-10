@@ -6,7 +6,11 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:04:51 by wdonnell          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/02/08 16:15:06 by wdonnell         ###   ########.fr       */
+=======
+/*   Updated: 2022/02/09 16:03:29 by wdonnell         ###   ########.fr       */
+>>>>>>> full
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +36,9 @@ void	print_char(t_pformat *cur, va_list ap)
 	cur->length += write (1, &c, 1);
 }
 
-void	print_percent(t_pformat *cur)
+void	print_percent(t_pformat *cur, va_list ap)
 {
+	ap = NULL;
 	if (cur->flags & SPACE & DOT)
 	{
 		cur->length += write (1, "%", 1);
@@ -50,6 +55,13 @@ void	print_percent(t_pformat *cur)
 		cur->length += write_char(' ', cur->field_width - 1);
 	}
 	cur->length += write (1, "%", 1);
+}
+
+void print_pointer (t_pformat *cur, va_list ap)
+{
+	ap = NULL;
+	cur->length = 0;
+	return ;
 }
 
 static void	str_align_left(t_pformat *cur, int len, char *str)
@@ -81,7 +93,7 @@ static void	str_align_right(t_pformat *cur, int len, char *str)
 	cur->length += putstr_len(str, len);
 }
 
-void	print_string(t_pformat *cur, va_list ap)
+void	print_str(t_pformat *cur, va_list ap)
 {
 	char	*str;
 	int		len;

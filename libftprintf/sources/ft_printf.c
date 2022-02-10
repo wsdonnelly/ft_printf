@@ -6,12 +6,16 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/02/08 16:10:22 by wdonnell         ###   ########.fr       */
+=======
+/*   Updated: 2022/02/09 16:22:28 by wdonnell         ###   ########.fr       */
+>>>>>>> full
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 static void	get_conversion(char c, t_pformat *cur, va_list ap)
 {
 	if (c == '%')
@@ -21,16 +25,29 @@ static void	get_conversion(char c, t_pformat *cur, va_list ap)
 	if (c == 'p')
 		print_pointer(cur, ap);
 	else if (c == 's')
-		print_string(cur, ap);
+		print_str(cur, ap);
+	//else if (c == 'p')
+		//print_pointer(cur, ap);
 	else if (c == 'd' || c == 'i')
 		print_di(cur, ap);
+<<<<<<< HEAD
 	else if (c == 'o' || c == 'u' || c == 'x' \
 		|| c == 'X' || c == 'b')
 		print_unsigned(cur, ap, c);
+=======
+	else if (c == 'o' )
+		print_octal(cur, ap);
+	//else if (c == 'u')
+		//print_unsigned(cur, ap);
+	//else if (c == 'x' || c == 'X')
+	//	print_hex(cur, ap);
+	//else if (c == 'b')
+	//	print_binary(cur, ap);
+>>>>>>> full
 	else if (c == 'f')
 		print_float(cur, ap);
 }
-
+*/
 static void	init_pformat(t_pformat *cur)
 {
 	cur->flags = 0;
@@ -43,13 +60,17 @@ static void	init_pformat(t_pformat *cur)
 static int	find_format(va_list ap, const char *format, t_pformat *cur)
 {
 	int	j;
+	int i;
 
 	init_pformat(cur);
 	j = 0;
+	i = 0;
 	get_format_data(format, cur, &j, ap);
-	if (ft_strchr("cspdiouxXf%", (int)format[j]))
+
+	i = strchr_i("%cspdibouxXf", (int)format[j]);
+	if (i >= 0)
 	{
-		get_conversion(format[j], cur, ap);
+		dispatch[i](cur, ap);
 		return (++j);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 13:55:06 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 14:33:21 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/08 18:05:40 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	get_modifier_u(t_pformat *cur, va_list ap, unsigned long long *nb)
 			*nb = (unsigned short)va_arg(ap, unsigned int);
 	}
 	else
-		*nb = (unsigned long long)va_arg(ap, unsigned int);	
+		*nb = (unsigned long long)va_arg(ap, unsigned int);
 }
