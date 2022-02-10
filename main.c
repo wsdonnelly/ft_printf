@@ -10,11 +10,11 @@ int main ()
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
 	
-	ret = ft_printf("%.0X", 0);
+	ret = ft_printf("%s", "abc");
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
-	ret =  printf("%.0X", 0);
+	ret =  printf("%s", "abc");
 	printf("\n");
 	printf("ret2: %d\n", ret);
 

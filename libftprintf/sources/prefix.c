@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:38:43 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:38:45 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 13:09:55 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,3 @@ void	print_prefix_signed(t_pformat *cur, int positive)
 		cur->length += write(1, "-", 1);
 }
 
-void	print_prefix_unsigned(t_pformat *cur, char c, int positive)
-{
-	if (cur->flags & HASH)
-	{
-		if (!positive)
-		{
-			if (c == 'o' && (cur->flags & DOT) && !cur->precision)
-				cur->length += write (1, "0", 1);
-			return ;
-		}
-		if (c == 'o' && cur->precision > cur->length)
-			return;
-		write(1, "0", 1);
-		if (c == 'x' || c == 'X')
-			write(1, &c, 1);
-		else if (c == 'b')
-			 write(1, "b", 1);
-	}
-}

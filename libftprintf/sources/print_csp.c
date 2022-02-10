@@ -6,12 +6,12 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:04:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:40:19 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:05:15 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 void	print_char(t_pformat *cur, va_list ap)
 {
 	unsigned char	c;
@@ -53,18 +53,18 @@ void	print_percent(t_pformat *cur, va_list ap)
 	cur->length += write (1, "%", 1);
 }
 
-static void	str_align_left(t_pformat *cur, int len, char *str)
+static void	str_align_left(t_pformat *cur, char *str)
 {
 	if (cur->flags & DOT)
 		cur->length += putstr_len(str, cur->precision);
 	else
-		cur->length += putstr_len(str, len);
-	if (cur->field_width > len)
-		cur->length += write_char(' ', cur->field_width - cur->length);
+		cur->length += putstr_len(str, cur->precision);
+	if (cur->field_width > cur->precision)
+		cur->length += write_char(' ', cur->field_width - cur->precision);
 	return ;
 }
 
-static void	str_align_right(t_pformat *cur, int len, char *str)
+static void	str_align_right(t_pformat *cur, char *str)
 {
 	if (cur->flags & DOT && cur->field_width)
 	{
@@ -77,31 +77,27 @@ static void	str_align_right(t_pformat *cur, int len, char *str)
 		cur->length += putstr_len(str, cur->precision);
 		return ;
 	}
-	if (cur->field_width > len)
-		cur->length += write_char(' ', cur->field_width - len);
-	cur->length += putstr_len(str, len);
+	if (cur->field_width > cur->precision)
+		cur->length += write_char(' ', cur->field_width - cur->precision);
+	cur->length += putstr_len(str, cur->precision);
 }
 
 void	print_str(t_pformat *cur, va_list ap)
 {
 	char	*str;
-	int		len;
 
 	str = va_arg(ap, char *);
 	if (!str)
-	{
-		cur->length += write(1, "(null)", 6);
-		return ;
-	}
+		str = "(null)";
 	if (cur->flags & HZSP)
 		return ;
-	len = (int)ft_strlen(str);
-	if (cur->precision > len)
-		cur->precision = len;
+	if (cur->precision > (int)ft_strlen(str) || !(cur->flags & DOT))
+		cur->precision = (int)ft_strlen(str);
+	
 	if (cur->flags & MINUS)
-		str_align_left(cur, len, str);
+		str_align_left(cur, str);
 	else
-		str_align_right(cur, len, str);
+		str_align_right(cur, str);
 }
 
 void print_pointer(t_pformat *cur, va_list ap)

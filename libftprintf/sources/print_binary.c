@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:37:43 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 12:37:25 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:00:59 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	left_align_binary(t_pformat *cur, unsigned long long n, int base_len
 	}
 	print_prefix_binary(cur, n);
 	print_precision_binary(cur, n);
-	if (cur->flags & HASH)
+	if (cur->flags & HASH && n != 0)
 		cur->length += 2;
 }
 
@@ -73,7 +73,7 @@ static void	right_align_binary(t_pformat *cur, unsigned long long n, int base_le
 	}
 	print_prefix_binary(cur, n);
 	print_precision_binary(cur, n);
-	if (cur->flags & HASH)
+	if (cur->flags & HASH && n != 0)
 		cur->length += 2;
 }
 

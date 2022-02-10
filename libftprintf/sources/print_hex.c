@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:36:13 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 12:41:11 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:00:07 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	right_align_hex(t_pformat *cur, unsigned long long n, int base_len)
 	}
 	print_prefix_hex(cur, n);
 	print_precision_hex(cur, n);
-	if (cur->flags & HASH)
+	if (cur->flags & HASH && n != 0)
 		cur->length += 2;
 }
 
