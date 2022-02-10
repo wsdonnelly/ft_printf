@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:28:46 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 13:00:35 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 # define SPACE	0x10	//0b00010000
 # define DOT	0x20	//0b00100000
 //undefined behavior
-# define HZSP	0x1B	//0b00011011
+# define SP		0x18	//0b00011000
 # define HSP	0x19	//0b00011001
+# define HZSP	0x1B	//0b00011011
+
 
 typedef struct s_pformat
 {
@@ -38,7 +40,7 @@ typedef struct s_pformat
 	int		length;
 }				t_pformat;
 
-typedef void	t_print_conversion(t_pformat *cur, va_list ap);
+typedef void	(*t_print_conversion)(t_pformat *cur, va_list ap);
 
 int			ft_printf(const char *format, ...);
 void		get_format_data(const char *format, t_pformat *cur, int *j, va_list ap);
@@ -70,7 +72,7 @@ void		print_prefix_unsigned(t_pformat *cur, char c, int positive);
 void		get_modifier_s(t_pformat *cur, va_list ap, long long *nb);
 void		get_modifier_u(t_pformat *cur, va_list ap, unsigned long long *nb);
 
-static t_print_conversion	*dispatch[12] = {
+static const t_print_conversion	dispatch[12] = {
 	print_percent,
 	print_char,
 	print_str,

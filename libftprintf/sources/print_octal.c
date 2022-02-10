@@ -6,12 +6,12 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:51:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:21:40 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:58:53 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static void	print_prefix_octal(t_pformat *cur)
 {
 	if (cur->flags & HASH)
@@ -68,7 +68,6 @@ void	print_octal(t_pformat *cur, va_list ap)
 {
 	unsigned long long	n;
 	int					base_len;
-	int					pos;
 
 	if (cur->flags & SPACE || cur->flags & PLUS)
 		return ;
@@ -76,10 +75,7 @@ void	print_octal(t_pformat *cur, va_list ap)
 	cur->length = num_digits_base(n, 8, 0);
 	base_len = cur->length;
 	
-	pos = 1;
-	if (n == 0)
-		pos = 0;
-	if (!pos && (cur->flags & HASH))
+	if (n == 0 && (cur->flags & HASH))
 		base_len--;
 	if ((cur->flags & DOT) && !cur->precision)
 		base_len--;
