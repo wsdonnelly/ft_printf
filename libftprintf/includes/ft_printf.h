@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 13:30:43 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:42:47 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define HSP	0x19	//0b00011001
 # define HZSP	0x1B	//0b00011011
 
-
 typedef struct s_pformat
 {
 	uint8_t	flags;
@@ -43,12 +42,13 @@ typedef struct s_pformat
 typedef void	(*t_print_conversion)(t_pformat *cur, va_list ap);
 
 int			ft_printf(const char *format, ...);
-void		get_format_data(const char *format, t_pformat *cur, int *j, va_list ap);
+void		get_format_data(const char *format, t_pformat *cur, \
+			int *j, va_list ap);
 //util
 int			write_char(char c, int len);
 int			putstr_len(char const *s, int len);
 void		ft_putnbr_s(long long n);
-int			num_digits_base(unsigned long long n, unsigned long long base, int sum);
+int			num_digits_base(unsigned long long n, int base, int sum);
 int			ft_num_digits_s(long long n);
 long double	round_double(long double nb, int precision);
 int			strchr_i(const char *s, int c);

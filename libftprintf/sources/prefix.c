@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 11:38:43 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 13:09:55 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:45:31 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ void	print_prefix_signed(t_pformat *cur, int positive)
 	else
 		cur->length += write(1, "-", 1);
 }
-

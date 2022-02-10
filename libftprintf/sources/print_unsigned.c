@@ -6,13 +6,13 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:37:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:39:43 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:52:42 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void print_precision_unsigned(t_pformat *cur, unsigned long long n)
+static void	print_precision_unsigned(t_pformat *cur, unsigned long long n)
 {
 	if (n == 0)
 	{
@@ -53,7 +53,7 @@ static void	right_align_unsigned(t_pformat *cur, unsigned long long n, int base_
 	print_precision_unsigned(cur, n);
 }
 
-void print_unsigned(t_pformat *cur, va_list ap)
+void	print_unsigned(t_pformat *cur, va_list ap)
 {
 	unsigned long long	n;
 	int					base_len;

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:36:13 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 14:00:07 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:52:24 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_prefix_hex(t_pformat *cur, unsigned long long n)
 	}
 }
 
-static void print_precision_hex(t_pformat *cur, unsigned long long n)
+static void	print_precision_hex(t_pformat *cur, unsigned long long n)
 {
 	if (n == 0)
 	{
@@ -48,7 +48,7 @@ static void	left_align_hex(t_pformat *cur, unsigned long long n, int base_len)
 	}
 	print_prefix_hex(cur, n);
 	print_precision_hex(cur, n);
-	if (cur->flags & HASH)
+	if (cur->flags & HASH && n != 0)
 		cur->length += 2;
 }
 
@@ -77,7 +77,7 @@ static void	right_align_hex(t_pformat *cur, unsigned long long n, int base_len)
 		cur->length += 2;
 }
 
-void print_hex(t_pformat *cur, va_list ap)
+void	print_hex(t_pformat *cur, va_list ap)
 {
 	unsigned long long	n;
 	int					base_len;
@@ -85,9 +85,8 @@ void print_hex(t_pformat *cur, va_list ap)
 	if (cur->flags & SP)
 		return ;
 	get_modifier_u(cur, ap, &n);
-	cur->length  = num_digits_base(n, 16, 0);
+	cur->length = num_digits_base(n, 16, 0);
 	base_len = cur->length;
-	
 	if (cur->precision > base_len)
 		base_len = cur->precision;
 	if (n != 0 && (cur->flags & HASH))

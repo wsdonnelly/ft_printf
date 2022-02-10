@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:20:06 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:43:27 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_pformat(t_pformat *cur)
 static int	find_format(va_list ap, const char *format, t_pformat *cur)
 {
 	int	j;
-	int i;
+	int	i;
 
 	init_pformat(cur);
 	j = 0;

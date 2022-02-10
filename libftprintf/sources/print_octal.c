@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:51:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 11:58:53 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:51:48 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static void	print_prefix_octal(t_pformat *cur)
 		cur->length += write(1, "0", 1);
 }
 
-static void print_precision_octal(t_pformat *cur, unsigned long long n)
+static void	print_precision_octal(t_pformat *cur, unsigned long long n)
 {
-	
 	if (n == 0)
 	{
 		if (((cur->flags & DOT) && !cur->precision) || (cur->flags & HASH))
@@ -74,7 +73,6 @@ void	print_octal(t_pformat *cur, va_list ap)
 	get_modifier_u(cur, ap, &n);
 	cur->length = num_digits_base(n, 8, 0);
 	base_len = cur->length;
-	
 	if (n == 0 && (cur->flags & HASH))
 		base_len--;
 	if ((cur->flags & DOT) && !cur->precision)

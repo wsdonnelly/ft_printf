@@ -6,12 +6,12 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:04:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 14:05:15 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:48:34 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 void	print_char(t_pformat *cur, va_list ap)
 {
 	unsigned char	c;
@@ -35,11 +35,6 @@ void	print_char(t_pformat *cur, va_list ap)
 void	print_percent(t_pformat *cur, va_list ap)
 {
 	ap = NULL;
-	if (cur->flags & SPACE & DOT)
-	{
-		cur->length += write (1, "%", 1);
-		return ;
-	}
 	if (cur->field_width)
 	{
 		if (cur->flags & MINUS)
@@ -48,7 +43,10 @@ void	print_percent(t_pformat *cur, va_list ap)
 			cur->length += write_char(' ', cur->field_width - 1);
 			return ;
 		}
-		cur->length += write_char(' ', cur->field_width - 1);
+		if (cur->flags & ZERO)
+			cur->length += write_char('0', cur->field_width - 1);
+		else
+			cur->length += write_char(' ', cur->field_width - 1);
 	}
 	cur->length += write (1, "%", 1);
 }
@@ -93,16 +91,15 @@ void	print_str(t_pformat *cur, va_list ap)
 		return ;
 	if (cur->precision > (int)ft_strlen(str) || !(cur->flags & DOT))
 		cur->precision = (int)ft_strlen(str);
-	
 	if (cur->flags & MINUS)
 		str_align_left(cur, str);
 	else
 		str_align_right(cur, str);
 }
 
-void print_pointer(t_pformat *cur, va_list ap)
+void	print_pointer(t_pformat *cur, va_list ap)
 {
-	unsigned long n;
+	unsigned long	n;
 
 	if (cur->flags & HZSP)
 		return ;

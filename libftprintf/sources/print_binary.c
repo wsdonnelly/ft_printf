@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:37:43 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 14:00:59 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:44:51 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_prefix_binary(t_pformat *cur, unsigned long long n)
 	}
 }
 
-static void print_precision_binary(t_pformat *cur, unsigned long long n)
+static void	print_precision_binary(t_pformat *cur, unsigned long long n)
 {
 	if (n == 0)
 	{
@@ -36,7 +36,8 @@ static void print_precision_binary(t_pformat *cur, unsigned long long n)
 	ft_putnbr_base(n, 2, 0);
 }
 
-static void	left_align_binary(t_pformat *cur, unsigned long long n, int base_len)
+static void	left_align_binary(t_pformat *cur, \
+unsigned long long n, int base_len)
 {
 	if (cur->field_width > base_len)
 	{
@@ -52,7 +53,8 @@ static void	left_align_binary(t_pformat *cur, unsigned long long n, int base_len
 		cur->length += 2;
 }
 
-static void	right_align_binary(t_pformat *cur, unsigned long long n, int base_len)
+static void	right_align_binary(t_pformat *cur, \
+unsigned long long n, int base_len)
 {
 	if (cur->field_width > base_len)
 	{
@@ -77,7 +79,7 @@ static void	right_align_binary(t_pformat *cur, unsigned long long n, int base_le
 		cur->length += 2;
 }
 
-void print_binary(t_pformat *cur, va_list ap)
+void	print_binary(t_pformat *cur, va_list ap)
 {
 	unsigned long long	n;
 	int					base_len;
@@ -85,7 +87,7 @@ void print_binary(t_pformat *cur, va_list ap)
 	if (cur->flags & SP)
 		return ;
 	get_modifier_u(cur, ap, &n);
-	cur->length  = num_digits_base(n, 2, 0);
+	cur->length = num_digits_base(n, 2, 0);
 	base_len = cur->length;
 	if (cur->precision > base_len)
 		base_len = cur->precision;

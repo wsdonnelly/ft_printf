@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/09 15:53:36 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:50:45 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	putstr_len(char const *s, int len)
 	return (n);
 }
 
-int	num_digits_base(unsigned long long n, unsigned long long base, int sum)
+int	num_digits_base(unsigned long long n, int base, int sum)
 {
 	if (n == 0)
 		return (1);
-	if (n / base)
-		sum = num_digits_base(n / base, base, sum);
+	if (n / (unsigned long long)base)
+		sum = num_digits_base(n / (unsigned long long)base, base, sum);
 	return (++sum);
 }
 
@@ -101,11 +101,11 @@ long double	round_double(long double nb, int precision)
 	return (nb);
 }
 
-int strchr_i(const char *s, int c)
+int	strchr_i(const char *s, int c)
 {
-	int	i;
-	char			*p;
-	char			cc;
+	int		i;
+	char	*p;
+	char	cc;
 
 	cc = (char)c;
 	p = (char *)s;
