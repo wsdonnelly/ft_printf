@@ -6,7 +6,7 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 12:30:42 by wdonnell          #+#    #+#              #
-#    Updated: 2022/02/08 14:03:40 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/02/08 17:56:16 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c includes/ft_printf.h
 	@$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(INCLUDES) -o $@ -c $< 
 
 clean:
-	@rm -rf $(OBJS_DIR)#
+	@rm -rf $(OBJS_DIR)
 	@rm -f libft/objects/*.o
 	@make clean -C libft/
 
