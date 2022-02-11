@@ -9,11 +9,11 @@ int main ()
 	int ret;
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
-	ret = ft_printf("%.f", .5);
+	ret = ft_printf("%@.14f %@s %s", CYAN, .5 / 567.2, BLUE, "hello wurld", "lain bare");
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
-	ret =  printf("%.f", .5);
+	ret =  printf("%.14f", .5 / 567.2);
 	printf("\n");
 	printf("ret2: %d\n", ret);
 

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 13:32:00 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 18:23:32 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define PLUS	0x08	//0b00001000
 # define SPACE	0x10	//0b00010000
 # define DOT	0x20	//0b00100000
+# define COLOR	0x40	//0b01000000
 //undefined behavior
 # define SP		0x18	//0b00011000
 # define HSP	0x19	//0b00011001
