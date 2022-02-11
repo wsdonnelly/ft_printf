@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex_uppper_upper.c                                  :+:      :+:    :+:   */
+/*   print_hex_upper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 15:37:32 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/09 16:01:56 by wdonnell         ###   ########.fr       */
+/*   Created: 2022/02/11 16:58:44 by wdonnell          #+#    #+#             */
+/*   Updated: 2022/02/11 16:58:46 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	print_precision_hex_uppper(t_pformat *cur, unsigned long long n)
 	ft_putnbr_base(n, 16, 1);
 }
 
-static void	left_align_hex_uppper(t_pformat *cur, unsigned long long n, int base_len)
+static void	left_align_hex_uppper(t_pformat *cur, unsigned long long n, \
+int base_len)
 {
 	if (cur->field_width > base_len)
 	{
@@ -52,7 +53,8 @@ static void	left_align_hex_uppper(t_pformat *cur, unsigned long long n, int base
 		cur->length += 2;
 }
 
-static void	right_align_hex_uppper(t_pformat *cur, unsigned long long n, int base_len)
+static void	right_align_hex_uppper(t_pformat *cur, unsigned long long n, \
+int base_len)
 {
 	if (cur->field_width > base_len)
 	{

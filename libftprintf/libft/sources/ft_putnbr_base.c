@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:19:39 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/05 11:53:51 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 13:37:35 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 void	ft_putnbr_base(unsigned long long n, int base, int flag)
 {
-
 	if (n == 0)
 	{
 		ft_putchar('0');

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:37:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:52:42 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 16:55:20 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	print_precision_unsigned(t_pformat *cur, unsigned long long n)
 	ft_putnbr_base(n, 10, 0);
 }
 
-static void	left_align_unsigned(t_pformat *cur, unsigned long long n, int base_len)
+static void	left_align_unsigned(t_pformat *cur, unsigned long long n, \
+int base_len)
 {
 	if (cur->field_width > base_len)
 	{
@@ -38,7 +39,8 @@ static void	left_align_unsigned(t_pformat *cur, unsigned long long n, int base_l
 	print_precision_unsigned(cur, n);
 }
 
-static void	right_align_unsigned(t_pformat *cur, unsigned long long n, int base_len)
+static void	right_align_unsigned(t_pformat *cur, unsigned long long n, \
+int base_len)
 {
 	if (cur->field_width > base_len)
 	{

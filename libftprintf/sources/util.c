@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:50:45 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 16:45:57 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,6 @@ int	write_char(char c, int len)
 	{
 		n += write (1, &c, 1);
 		i++;
-	}
-	return (n);
-}
-
-int	putstr_len(char const *s, int len)
-{
-	int	n;
-	int	i;
-
-	i = 0;
-	n = 0;
-	if (!s)
-		return (0);
-	while (i < len)
-	{
-		ft_putchar(s[i++]);
-		n++;
 	}
 	return (n);
 }
@@ -87,36 +70,15 @@ void	ft_putnbr_s(long long n)
 
 long double	round_double(long double nb, int precision)
 {
-	long double	rounder;
-	int			i;
+	double	rounder;
+	int		i;
 
-	rounder = 0.5;
-	i = precision;
-	while (i-- > 0)
+	rounder = .05;
+	i = 0;
+	while (i++ < precision)
 		rounder /= 10;
 	if (nb < 0)
-		nb -= rounder;
+		return (nb - rounder);
 	else
-		nb += rounder;
-	return (nb);
-}
-
-int	strchr_i(const char *s, int c)
-{
-	int		i;
-	char	*p;
-	char	cc;
-
-	cc = (char)c;
-	p = (char *)s;
-	i = 0;
-	if (*p == '\0' && cc != '\0')
-		return (-1);
-	while (p[i] != cc && p[i] != '\0')
-	{
-		i++;
-		if (p[i] == '\0')
-			return (-1);
-	}
-	return (i);
+		return (nb + rounder);
 }

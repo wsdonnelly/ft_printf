@@ -6,16 +6,16 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 12:33:57 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 16:57:57 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void get_alt_flags(const char *format, int *j, va_list ap)
+static void	get_alt_flags(const char *format, int *j, va_list ap)
 {
 	if (ft_strchr("@", (int)format[*j]))
-		ft_putstr((char*)va_arg(ap, char *));
+		ft_putstr((char *)va_arg(ap, char *));
 }
 
 static void	get_flags(const char *format, t_pformat *cur, int *j)
@@ -64,10 +64,10 @@ static void	get_pre(const char *format, t_pformat *cur, int *j, va_list ap)
 	{
 		cur->flags |= DOT;
 		(*j)++;
-		if (ft_strchr("0123456789*", (int)format[*j]))
+		while (format[*j] == '0')
+			(*j)++;
+		if (ft_strchr("123456789*", (int)format[*j]))
 		{
-			while (format[*j] == '0')
-				(*j)++;
 			if (format[*j] == '*')
 			{
 				cur->precision = va_arg(ap, int);

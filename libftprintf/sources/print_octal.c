@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:51:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:51:48 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 16:57:11 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	left_align_octal(t_pformat *cur, unsigned long long n, int base_len)
 	print_precision_octal(cur, n);
 }
 
-static void	right_align_octal(t_pformat *cur, unsigned long long n, int base_len)
+static void	right_align_octal(t_pformat *cur, unsigned long long n, \
+int base_len)
 {
 	if (cur->field_width > base_len)
 	{

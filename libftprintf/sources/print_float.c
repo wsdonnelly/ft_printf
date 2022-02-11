@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:15:47 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/08 14:56:42 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 16:54:26 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ static void	print_precision_f(t_pformat *cur, long double n, int first_digi_exp)
 	}
 }
 
-static void	float_left_align(t_pformat *cur, int total_len, int len_int_part, long double n, int positive)
+static void	float_left_align(t_pformat *cur, int total_len, int len_int_part, \
+long double n)
 {
+	int	positive;
+
+	positive = 1;
+	if (n < 0)
+		positive = 0;
 	if (cur->field_width > total_len)
 	{
 		print_prefix_signed(cur, positive);
@@ -54,8 +60,14 @@ static void	float_left_align(t_pformat *cur, int total_len, int len_int_part, lo
 	print_precision_f(cur, n, len_int_part - 1);
 }
 
-static void	float_right_align(t_pformat *cur, int total_len, int len_int_part, long double n, int positive)
+static void	float_right_align(t_pformat *cur, int total_len, int len_int_part, \
+long double n)
 {
+	int	positive;
+
+	positive = 1;
+	if (n < 0)
+		positive = 0;
 	if (cur->field_width > total_len)
 	{
 		if ((cur->flags & ZERO))
@@ -74,28 +86,11 @@ static void	float_right_align(t_pformat *cur, int total_len, int len_int_part, l
 	print_precision_f(cur, n, len_int_part - 1);
 }
 
-static void	print_field_f(t_pformat *cur, int len, int len_int_part, long double n)
-{
-	int	total_len;
-	int	positive;
-
-	positive = 1;
-	if (n < 0)
-		positive = 0;
-	total_len = len;
-	if (cur->field_width >= cur->precision)
-		if (cur->flags & (SPACE | PLUS) || n < 0)
-			total_len++;
-	if (cur->flags & MINUS)
-		float_left_align(cur, total_len, len_int_part, n, positive);
-	else
-		float_right_align(cur, total_len, len_int_part, n, positive);
-}
-
 void	print_float(t_pformat *cur, va_list ap)
 {
 	long double	n;
 	int			len_int_part;
+	int			total_len;
 
 	if (cur->length_modifier[0] == 'L')
 		n = (long double)va_arg(ap, long double);
@@ -109,5 +104,12 @@ void	print_float(t_pformat *cur, va_list ap)
 		cur->length = len_int_part + cur->precision + 1;
 	else
 		cur->length = len_int_part;
-	print_field_f (cur, cur->length, len_int_part, n);
+	total_len = cur->length;
+	if (cur->field_width >= cur->precision)
+		if (cur->flags & (SPACE | PLUS) || n < 0)
+			total_len++;
+	if (cur->flags & MINUS)
+		float_left_align(cur, total_len, len_int_part, n);
+	else
+		float_right_align(cur, total_len, len_int_part, n);
 }

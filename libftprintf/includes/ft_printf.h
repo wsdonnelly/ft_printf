@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 12:13:08 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 13:32:00 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,11 @@ void		get_format_data(const char *format, t_pformat *cur, \
 			int *j, va_list ap);
 //util
 int			write_char(char c, int len);
-int			putstr_len(char const *s, int len);
 void		ft_putnbr_s(long long n);
 int			num_digits_base(unsigned long long n, int base, int sum);
 int			ft_num_digits_s(long long n);
 long double	round_double(long double nb, int precision);
-int			strchr_i(const char *s, int c);
+
 //printers
 void		print_percent(t_pformat *cur, va_list ap);
 void		print_char(t_pformat *cur, va_list ap);

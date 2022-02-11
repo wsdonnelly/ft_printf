@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prefix.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 11:38:43 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 13:29:31 by wdonnell         ###   ########.fr       */
+/*   Created: 2022/02/11 12:54:29 by wdonnell          #+#    #+#             */
+/*   Updated: 2022/02/11 13:42:05 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	print_prefix_signed(t_pformat *cur, int positive)
+/*
+* put str to designated length, return that length
+*/
+
+int	ft_putstr_len(char const *s, int len)
 {
-	if (positive)
+	int	n;
+	int	i;
+
+	i = 0;
+	n = 0;
+	if (!s)
+		return (0);
+	while (i < len && s[i])
 	{
-		if (cur->flags & PLUS)
-		{
-			cur->length += write(1, "+", 1);
-			return ;
-		}
-		else if (cur->flags & SPACE)
-			cur->length += write(1, " ", 1);
+		ft_putchar(s[i++]);
+		n++;
 	}
-	else
-		cur->length += write(1, "-", 1);
+	return (n);
 }
