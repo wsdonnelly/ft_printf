@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:43:27 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 12:31:18 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	init_pformat(t_pformat *cur)
 	cur->precision = 0;
 	ft_bzero(&cur->length_modifier, sizeof(char) * 3);
 	cur->length = 0;
+	ft_putstr(EOC);
 }
 
 static int	find_format(va_list ap, const char *format, t_pformat *cur)
@@ -65,5 +66,6 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
+	ft_putstr(EOC);
 	return (total);
 }

@@ -6,15 +6,21 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:17:28 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 12:33:57 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static void get_alt_flags(const char *format, int *j, va_list ap)
+{
+	if (ft_strchr("@", (int)format[*j]))
+		ft_putstr((char*)va_arg(ap, char *));
+}
+
 static void	get_flags(const char *format, t_pformat *cur, int *j)
 {
-	while (ft_strchr("#0-+ ", (int)format[*j]))
+	while (ft_strchr("@#0-+ ", (int)format[*j]))
 	{
 		if (format[*j] == '#')
 			cur->flags |= HASH;
@@ -60,6 +66,8 @@ static void	get_pre(const char *format, t_pformat *cur, int *j, va_list ap)
 		(*j)++;
 		if (ft_strchr("0123456789*", (int)format[*j]))
 		{
+			while (format[*j] == '0')
+				(*j)++;
 			if (format[*j] == '*')
 			{
 				cur->precision = va_arg(ap, int);
@@ -94,6 +102,7 @@ static void	get_length_modifier(const char *format, t_pformat *cur, int *j)
 
 void	get_format_data(const char *format, t_pformat *cur, int *j, va_list ap)
 {
+	get_alt_flags(format, j, ap);
 	get_flags(format, cur, j);
 	get_width(format, cur, j, ap);
 	get_pre(format, cur, j, ap);

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:42:47 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/11 12:13:08 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@
 # define SP		0x18	//0b00011000
 # define HSP	0x19	//0b00011001
 # define HZSP	0x1B	//0b00011011
+//color
+# define RED		"\x1b[31m"
+# define GREEN		"\x1b[32m"
+# define YELLOW		"\x1b[33m"
+# define BLUE		"\x1b[34m"
+# define MAGENTA	"\x1b[35m"
+# define CYAN		"\x1b[36m"
+# define EOC		"\x1b[0m"
 
 typedef struct s_pformat
 {
