@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 18:23:32 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/12 14:18:18 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ void		print_unsigned(t_pformat *cur, va_list ap);
 void		print_hex(t_pformat *cur, va_list ap);
 void		print_hex_upper(t_pformat *cur, va_list ap);
 void		print_float(t_pformat *cur, va_list ap);
+void		print_banner(t_pformat *cur, va_list ap);
 //prefix
 void		print_prefix_signed(t_pformat *cur, int positive);
-void		print_prefix_unsigned(t_pformat *cur, char c, int positive);
 
 //modifier
 void		get_modifier_s(t_pformat *cur, va_list ap, long long *nb);
 void		get_modifier_u(t_pformat *cur, va_list ap, unsigned long long *nb);
 
-static const t_print_conversion	dispatch[12] = {
+static const t_print_conversion	g_dispatch[13] = {
 	print_percent,
 	print_char,
 	print_str,
@@ -92,7 +92,8 @@ static const t_print_conversion	dispatch[12] = {
 	print_unsigned,
 	print_hex,
 	print_hex_upper,
-	print_float
+	print_float,
+	print_banner
 };
 
 #endif

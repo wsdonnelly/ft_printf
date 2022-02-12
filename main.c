@@ -9,13 +9,13 @@ int main ()
 	int ret;
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
-	ret = ft_printf("%@.14f %@s %s", CYAN, .5 / 567.2, BLUE, "hello wurld", "lain bare");
-	printf("\n");
+	ret = ft_printf("%B", "HELLO WORLD HERE IS MY FIRST MESSAGE");
+	//printf("\n");
 	printf("ret1: %d\n", ret);
 
-	ret =  printf("%.14f", .5 / 567.2);
-	printf("\n");
-	printf("ret2: %d\n", ret);
+	//ret = printf("%.10f", 4294967.0 / 13.11);
+	//printf("\n");
+	//printf("ret2: %d\n", ret);
 
 	//ft_putnbr_base(12345678, 34, 1);
 	//printf("\n");
@@ -26,4 +26,4 @@ int main ()
 
 //%[$][flags][width][.precision][length modifier]conversion
 
-//make  -C libftprintf && gcc main.c -L libftprintf -lftprintf
+//make  -C libftprintf && gcc main.c -L libftprintf -lftprintfS

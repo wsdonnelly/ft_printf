@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 18:24:25 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/12 14:18:14 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_flags(const char *format, t_pformat *cur, int *j)
 {
-	while (ft_strchr("@#0-+ ", (int)format[*j]))
+	while (ft_strchr("C#0-+ ", (int)format[*j]))
 	{
 		if (format[*j] == '#')
 			cur->flags |= HASH;
@@ -26,7 +26,7 @@ static void	get_flags(const char *format, t_pformat *cur, int *j)
 			cur->flags |= PLUS;
 		else if (format[*j] == ' ')
 			cur->flags |= SPACE;
-		else if (format[*j] == '@')
+		else if (format[*j] == 'C')
 			cur->flags |= COLOR;
 		(*j)++;
 	}
