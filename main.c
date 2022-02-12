@@ -9,7 +9,7 @@ int main ()
 	int ret;
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
-	ret = ft_printf("%B", "HELLO WORLD HERE IS MY FIRST MESSAGE");
+	ret = ft_printf("%CB",GREEN, "abcdefghijklmnopqrstuvwxyz");
 	//printf("\n");
 	printf("ret1: %d\n", ret);
 
