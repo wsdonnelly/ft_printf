@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/12 14:18:15 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:27:55 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,10 @@ int	ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	int			i;
-	int			total;
+	static int	total;
 	t_pformat	cur;
 
 	va_start(ap, format);
-	total = 0;
 	i = 0;
 	while (format[i])
 	{
@@ -58,13 +57,13 @@ int	ft_printf(const char *format, ...)
 			i += find_format(ap, &format[i + 1], &cur) + 1;
 			total += cur.length;
 			if (cur.flags & COLOR)
+			{
+				total += 9;
 				ft_putstr(EOC);
+			}
 		}
 		else
-		{
-			total += write(1, &format[i], 1);
-			i++;
-		}
+			total += write(1, &format[i++], 1);
 	}
 	va_end(ap);
 	return (total);

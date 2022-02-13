@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:36:13 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/10 15:52:24 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/13 15:26:20 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	left_align_hex(t_pformat *cur, unsigned long long n, int base_len)
 	{
 		print_prefix_hex(cur, n);
 		print_precision_hex(cur, n);
-		cur->length += write_char(' ', cur->field_width - base_len);
+		write_char(' ', cur->field_width - base_len);
 		cur->length = cur->field_width;
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 13:52:57 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/12 16:31:26 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:39:54 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,62 +39,75 @@
 #define Y 0x66F9
 #define Z 0xF24F
 
-static void	print_letter(char c, int line, uint16_t *shift)
+static void	print_letter(t_pformat *cur, char c, int line, uint16_t *shift)
 {
 	int						j;
 	uint16_t				i;
-	char					cc;
 	static const uint16_t	alpha[26] = {A, B, C, D, E, F, G, H, I, J, K, L, M, \
 							N, O, P, Q, R, S, T, U, V, W, X, Y, Z};
 
-	cc = (char)ft_tolower((int)c);
 	i = *shift;
 	j = line * 4;
 	while (j < (line + 1) * 4)
 	{
-		if (i & alpha[cc - 'a'])
+		if (i & alpha[c - 'a'])
+		{
 			ft_putstr("\u2588");
+			cur->length += 3;
+		}
 		else
+		{
 			ft_putchar(' ');
+			cur->length++;
+		}
 		i <<= 1;
 		j++;
 	}
 	ft_putstr("  ");
+	cur->length += 2;
+}
+
+static int	print_word(t_pformat *cur, char *str, int i)
+{
+	int			j;
+	int			k;
+	int			line;
+	uint16_t	shift;
+
+	shift = 1;
+	line = 0;
+	while (line < 4)
+	{
+		j = i;
+		k = 0;
+		while (str[j] != ' ' && str[j])
+		{
+			if (str[j] >= 'a' && str[j] <= 'z')
+				print_letter(cur, str[j], line, &shift);
+			j++;
+			k++;
+		}
+		line++;
+		shift <<= 4;
+		ft_putchar('\n');
+		cur->length++;
+	}
+	return (k);
 }
 
 void	print_banner(t_pformat *cur, va_list ap)
 {
 	char		*str;
 	int			i;
-	int			j;
-	int			k;
-	int			line;
-	uint16_t	shift;
 
 	cur->length = 0;
 	str = va_arg(ap, char *);
-	j = 0;
 	i = 0;
 	while (str[i])
 	{
-		shift = 1;
-		line = 0;
-		while (line < 4)
-		{
-			j = i;
-			k = 0;
-			while (str[j] != ' ' && str[j])
-			{
-				print_letter(str[j], line, &shift);
-				j++;
-				k++;
-			}
-			line++;
-			shift <<= 4;
-			ft_putchar('\n');
-		}
 		ft_putchar('\n');
-		i += k;
+		cur->length++;
+		i += print_word(cur, str, i);
 		if (str[i] == ' ')
 			i++;
 	}

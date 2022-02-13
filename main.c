@@ -9,11 +9,13 @@ int main ()
 	int ret;
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
-	ret = ft_printf("%CB",GREEN, "abcdefghijklmnopqrstuvwxyz");
+	//ret = ft_printf("%CB", CYAN, "i have shrimped i have shrimmped hard");
+	ret = ft_printf("%#Cx", BLUE, 42);
+	//ret = ft_printf("%.f %.f %.f", 0.5, 1.5, 2.5);
 	//printf("\n");
-	printf("ret1: %d\n", ret);
+	//printf("ret1: %d\n", ret);
 
-	//ret = printf("%.10f", 4294967.0 / 13.11);
+	//ret = printf("%7.9x %7.9x here", 42, 42);
 	//printf("\n");
 	//printf("ret2: %d\n", ret);
 

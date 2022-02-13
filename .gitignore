@@ -2,3 +2,4 @@
 *.a
 tester.c
 a.out
+*.txt

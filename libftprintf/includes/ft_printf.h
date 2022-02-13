@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/12 14:18:18 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:10:10 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@
 
 typedef struct s_pformat
 {
-	uint8_t	flags;
-	int		field_width;
-	int		precision;
-	char	length_modifier[3];
-	int		length;
+	uint8_t		flags;
+	int			field_width;
+	int			precision;
+	char		length_modifier[3];
+	int			length;
 }				t_pformat;
 
-typedef void	(*t_print_conversion)(t_pformat *cur, va_list ap);
+typedef void					(*t_print_conversion)(t_pformat *cur, \
+va_list ap);
 
 int			ft_printf(const char *format, ...);
 void		get_format_data(const char *format, t_pformat *cur, \

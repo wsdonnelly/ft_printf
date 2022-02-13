@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 13:12:04 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 16:45:57 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:57:15 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,11 @@ void	ft_putnbr_s(long long n)
 long double	round_double(long double nb, int precision)
 {
 	double	rounder;
-	int		i;
 
-	rounder = .05;
-	i = 0;
-	while (i++ < precision)
-		rounder /= 10;
+	rounder = .5;
 	if (nb < 0)
-		return (nb - rounder);
-	else
-		return (nb + rounder);
+		rounder *= -1;
+	while (precision--)
+		rounder /= 10.0;
+	return (nb + rounder);
 }
