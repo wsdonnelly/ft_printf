@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:58:44 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 16:58:46 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:03:57 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ void	print_hex_upper(t_pformat *cur, va_list ap)
 	unsigned long long	n;
 	int					base_len;
 
-	if (cur->flags & SP)
-		return ;
 	get_modifier_u(cur, ap, &n);
 	cur->length = num_digits_base(n, 16, 0);
 	base_len = cur->length;

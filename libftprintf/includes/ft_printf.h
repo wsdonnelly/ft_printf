@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:38:19 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/13 14:10:10 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:59:37 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@
 # define SPACE	0x10	//0b00010000
 # define DOT	0x20	//0b00100000
 # define COLOR	0x40	//0b01000000
-//undefined behavior
-# define SP		0x18	//0b00011000
-# define HSP	0x19	//0b00011001
-# define HZSP	0x1B	//0b00011011
 //color
 # define RED		"\x1b[31m"
 # define GREEN		"\x1b[32m"

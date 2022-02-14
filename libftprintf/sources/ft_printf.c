@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/13 15:27:55 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:16:32 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ int	ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	int			i;
-	static int	total;
+	int			total;
 	t_pformat	cur;
 
 	va_start(ap, format);
 	i = 0;
+	total = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')

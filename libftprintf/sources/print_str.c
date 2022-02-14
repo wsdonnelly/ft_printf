@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 12:43:54 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 13:29:32 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:58:45 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	print_str(t_pformat *cur, va_list ap)
 	str = va_arg(ap, char *);
 	if (!str)
 		str = "(null)";
-	if (cur->flags & HZSP)
-		return ;
 	if (cur->precision > (int)ft_strlen(str) || !(cur->flags & DOT))
 		cur->precision = (int)ft_strlen(str);
 	if (cur->flags & MINUS)

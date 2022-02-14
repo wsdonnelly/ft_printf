@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 16:16:57 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 16:56:45 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:57:44 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	print_di(t_pformat *cur, va_list ap)
 	int			len;
 	long long	n;
 
-	if (cur->flags & HASH)
-		return ;
 	get_modifier_s(cur, ap, &n);
 	len = ft_num_digits_s(n);
 	if (n == 0 && cur->flags & DOT && !cur->precision)

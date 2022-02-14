@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:04:51 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/11 13:29:28 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:58:36 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	print_char(t_pformat *cur, va_list ap)
 	unsigned char	c;
 
 	c = (unsigned char)va_arg(ap, int);
-	if (cur->flags & HZSP)
-		return ;
 	if (cur->field_width)
 	{
 		if (cur->flags & MINUS)
@@ -55,8 +53,6 @@ void	print_pointer(t_pformat *cur, va_list ap)
 {
 	unsigned long	n;
 
-	if (cur->flags & HZSP)
-		return ;
 	n = (unsigned long)va_arg(ap, void *);
 	cur->length = num_digits_base(n, 16, 0) + 2;
 	if (cur->field_width > cur->length)

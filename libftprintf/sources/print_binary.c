@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:37:43 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/12 14:18:17 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:41:07 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	print_prefix_binary(t_pformat *cur, unsigned long long n)
 	if (n != 0)
 	{
 		if (cur->flags & HASH)
-			cur->length += write(1, "0b", 2);
+			write(1, "0b", 2);
 	}
 }
 
@@ -43,7 +43,7 @@ unsigned long long n, int base_len)
 	{
 		print_prefix_binary(cur, n);
 		print_precision_binary(cur, n);
-		cur->length += write_char(' ', cur->field_width - base_len);
+		write_char(' ', cur->field_width - base_len);
 		cur->length = cur->field_width;
 		return ;
 	}
@@ -84,8 +84,6 @@ void	print_binary(t_pformat *cur, va_list ap)
 	unsigned long long	n;
 	int					base_len;
 
-	if (cur->flags & SP)
-		return ;
 	get_modifier_u(cur, ap, &n);
 	cur->length = num_digits_base(n, 2, 0);
 	base_len = cur->length;

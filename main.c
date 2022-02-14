@@ -1,5 +1,6 @@
 #include "libftprintf/includes/ft_printf.h"
-#include "libftprintf/includes/libft.h"
+//#include "libftprintf/libft/includes/libft.h"
+//#include "clone/includes/ft_printf.h"
 #include <limits.h>
 #include <stdio.h>
 
@@ -9,13 +10,12 @@ int main ()
 	int ret;
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
-	//ret = ft_printf("%CB", CYAN, "i have shrimped i have shrimmped hard");
-	ret = ft_printf("%#Cx", BLUE, 42);
-	//ret = ft_printf("%.f %.f %.f", 0.5, 1.5, 2.5);
-	//printf("\n");
-	//printf("ret1: %d\n", ret);
+	
+	ret = ft_printf("%+- i", 23);
+	printf("\n");
+	printf("ret1: %d\n", ret);
 
-	//ret = printf("%7.9x %7.9x here", 42, 42);
+	//ret = printf("|%08c|", 42) - 2;
 	//printf("\n");
 	//printf("ret2: %d\n", ret);
 
@@ -28,4 +28,6 @@ int main ()
 
 //%[$][flags][width][.precision][length modifier]conversion
 
-//make  -C libftprintf && gcc main.c -L libftprintf -lftprintfS
+//make  -C libftprintf && gcc main.c -L libftprintf -lftprintf
+//printf("%.1f %.1f\n", 0.15, 0.85);
+//printf("%.1Lf %.1Lf\n", 0.15l, 0.85l);
