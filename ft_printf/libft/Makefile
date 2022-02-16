@@ -6,7 +6,7 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/02 10:23:27 by wdonnell          #+#    #+#              #
-#    Updated: 2022/02/11 13:41:22 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/02/16 14:20:58 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ft_strcpy.c ft_strdel.c ft_strdup.c ft_strequ.c ft_striter.c \
 ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlen.c ft_strmap.c \
 ft_strmapi.c ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c \
 ft_strnew.c ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c \
-ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c get_next_line.c \
+ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
 ft_num_digits.c ft_strset.c ft_putnbr_base.c ft_putstr_len.c \
 ft_strchr_i.c
 SRCS_DIR = ./sources/
