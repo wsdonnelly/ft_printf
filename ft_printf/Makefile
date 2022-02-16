@@ -6,7 +6,7 @@
 #    By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 12:30:42 by wdonnell          #+#    #+#              #
-#    Updated: 2022/02/13 12:52:30 by wdonnell         ###   ########.fr        #
+#    Updated: 2022/02/16 16:37:57 by wdonnell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME): $(OBJS)
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c includes/ft_printf.h
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) $(EXTRA_FLAGS) $(INCLUDES) -o $@ -c $< 
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $< 
 
 clean:
 	@rm -rf $(OBJS_DIR)

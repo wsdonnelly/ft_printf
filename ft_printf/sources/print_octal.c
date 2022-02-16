@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:51:59 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/14 11:58:16 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/16 16:37:39 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	print_octal(t_pformat *cur, va_list ap)
 	get_modifier_u(cur, ap, &n);
 	cur->length = num_digits_base(n, 8, 0);
 	base_len = cur->length;
-	if (n == 0 && (cur->flags & HASH))
-		base_len--;
-	if ((cur->flags & DOT) && !cur->precision)
+	if ((cur->flags & DOT) && !cur->precision && n == 0)
 		base_len--;
 	if (cur->flags & HASH)
 	{
