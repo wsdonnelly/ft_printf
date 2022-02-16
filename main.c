@@ -11,7 +11,7 @@ int main ()
 	//double n = 1.5 / .00345;
 	//unsigned int n = UINT_MAX;
 	
-	ret = ft_printf("%+- i", 23);
+	ret = ft_printf("%C*.*s", BLUE, 30, 5, "hello wurld");
 	printf("\n");
 	printf("ret1: %d\n", ret);
 
@@ -28,6 +28,6 @@ int main ()
 
 //%[$][flags][width][.precision][length modifier]conversion
 
-//make  -C libftprintf && gcc main.c -L libftprintf -lftprintf
+//make  -C ft_printf && gcc main.c -L ft_printf -lftprintf
 //printf("%.1f %.1f\n", 0.15, 0.85);
 //printf("%.1Lf %.1Lf\n", 0.15l, 0.85l);

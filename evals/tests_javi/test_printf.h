@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_printf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/02/02 17:40:36 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:38:27 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /*
 ** Forward declaration
 */
-typedef struct s_spec t_spec;
+typedef struct s_spec	t_spec;
 
 void	print_spec(t_spec *spec);
 

@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:57:31 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/12 14:18:14 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:38:26 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ static void	get_length_modifier(const char *format, t_pformat *cur, int *j)
 void	get_format_data(const char *format, t_pformat *cur, int *j, va_list ap)
 {
 	get_flags(format, cur, j);
+	if (cur->flags & COLOR)
+		ft_putstr(va_arg(ap, char *));
 	get_width(format, cur, j, ap);
 	get_pre(format, cur, j, ap);
 	get_length_modifier(format, cur, j);

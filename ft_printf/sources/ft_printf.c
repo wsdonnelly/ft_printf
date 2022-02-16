@@ -6,7 +6,7 @@
 /*   By: wdonnell <wdonnell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 22:01:07 by wdonnell          #+#    #+#             */
-/*   Updated: 2022/02/14 12:16:32 by wdonnell         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:38:28 by wdonnell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	find_format(va_list ap, const char *format, t_pformat *cur)
 	j = 0;
 	i = 0;
 	get_format_data(format, cur, &j, ap);
-	if (cur->flags & COLOR)
-		ft_putstr(va_arg(ap, char *));
 	i = ft_strchr_i("%cspdibouxXfB", (int)format[j]);
 	if (i >= 0)
 	{
